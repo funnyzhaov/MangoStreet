@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.model.IUserInfoModel;
 import me.funnyzhao.mangostreet.model.UserInfoModelImpl;
 import me.funnyzhao.mangostreet.view.IUserInfoView;
@@ -16,8 +17,24 @@ public class UserInfoPerImpl implements IUserInfoPer {
         iUserInfoModel=new UserInfoModelImpl();
     }
 
+
     @Override
-    public boolean getOnlineNum() {
-        return iUserInfoModel.isGetNumOk()?true:false;
+    public void checkLocalData() {
+        if (iUserInfoModel.isLocalData()){
+            iUserInfoView.stopProgress();
+            iUserInfoView.showCardViews();
+            iUserInfoView.setCollectAndReseled();
+            iUserInfoView.setUserData(MangoApplication.getUser());
+        }else {
+            iUserInfoModel.isGetNumOk(this);
+        }
+    }
+
+    @Override
+    public void getNetDataSuccess() {
+        iUserInfoView.stopProgress();
+        iUserInfoView.showCardViews();
+        iUserInfoView.setCollectAndReseled();
+        iUserInfoView.setUserData(MangoApplication.getUser());
     }
 }

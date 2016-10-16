@@ -16,4 +16,14 @@ public interface IUserInfoView {
      * 设置用户相关数据
      */
     void setUserData(_User userData);
+
+    /**
+     * 显示CardView
+     */
+    void showCardViews();
+
+    /**
+     * 隐藏动画加载条
+     */
+    void stopProgress();
 }

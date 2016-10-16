@@ -5,9 +5,11 @@ package me.funnyzhao.mangostreet.presenter;
  */
 
 public interface IUserInfoPer {
+
     /**
-     * 获取当前在线用户的数据
-     * @return
+     * 检查本地数据
      */
-    boolean getOnlineNum();
+    void  checkLocalData();
+
+    void  getNetDataSuccess();
 }

@@ -18,6 +18,7 @@ import me.funnyzhao.mangostreet.bean.success.SuccessBody;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
+import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
 import me.funnyzhao.mangostreet.util.Interceptor.MangoInterceptors;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -36,10 +37,6 @@ public  class RetrofitRequest {
     private static Gson gson;
     private  static  Retrofit retrofit;
     private static HashMap<String,Object> hashMap=new HashMap<>();
-    //物品请求判断
-    private  static  boolean isItemOk=false;
-    //收藏请求判断
-    private  static  boolean isCollectOk=false;
     //初始化gson、retrofit
     private static void init() {
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -123,7 +120,7 @@ public  class RetrofitRequest {
     /**
      * 获取当前在线用户的发布物品集合
      */
-    public static boolean toGetItemsOnline(String userName){
+    public static void toGetItemsOnline(String userName){
         init();
         ItemApi itemApi=retrofit.create(ItemApi.class);
         Call<ItemResultBody> call=itemApi.getItemByuserName(userName);
@@ -134,19 +131,14 @@ public  class RetrofitRequest {
                     int releasedCount=response.body().getResults().length;
                     MangoApplication.mapPut("releasedCount",releasedCount);
                     Logger.d("TAG","发布数请求成功");
-                    isItemOk=true;
-                }else{
-                    isItemOk=false;
                 }
             }
 
             @Override
             public void onFailure(Call<ItemResultBody> call, Throwable t) {
                 Logger.d(t);
-                isItemOk=false;
             }
         });
-        return isItemOk;
 
     }
 
@@ -155,7 +147,7 @@ public  class RetrofitRequest {
      * @param userName
      * @return
      */
-    public static boolean toGetCollectOnline(String userName){
+    public static void toGetCollectOnline(String userName, final IUserInfoPer iUserInfoPer){
         init();
         CollectApi collectApi=retrofit.create(CollectApi.class);
         Call<CollectResultBody> call=collectApi.getCollectByuserName(userName);
@@ -165,20 +157,14 @@ public  class RetrofitRequest {
                 if (response.isSuccessful()){
                     int collectCount=response.body().getResults().length;
                     MangoApplication.mapPut("collectCount",collectCount);
-                    isCollectOk=true;
-                    Logger.d("收藏数请求成功");
-                }else{
-                    Logger.d("请求未响应");
-                    isCollectOk=false;
+                    iUserInfoPer.getNetDataSuccess();
                 }
             }
 
             @Override
             public void onFailure(Call<CollectResultBody> call, Throwable t) {
                 Logger.d(t);
-                isCollectOk=false;
             }
         });
-        return isCollectOk;
     }
 }

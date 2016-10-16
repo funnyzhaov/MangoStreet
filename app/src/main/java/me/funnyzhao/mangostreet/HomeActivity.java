@@ -90,7 +90,6 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
 
         initToolbar();
         initDrawerLayout();
-        ivUserImage.setOnClickListener(this);
         tvToLogin.setOnClickListener(this);
         tvUserName.setOnClickListener(this);
         tvIdentification.setOnClickListener(this);
@@ -211,6 +210,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         tvUserName.setVisibility(View.VISIBLE);
         tvIdentification.setVisibility(View.VISIBLE);
         tvToLogin.setVisibility(View.GONE);
+        ivUserImage.setOnClickListener(this);
         checkUserShow();
     }
 

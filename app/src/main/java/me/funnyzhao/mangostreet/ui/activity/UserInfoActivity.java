@@ -1,7 +1,11 @@
 package me.funnyzhao.mangostreet.ui.activity;
 
+import android.support.v7.widget.CardView;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.mmga.metroloading.MetroLoadingView;
 
 import butterknife.BindView;
 import me.funnyzhao.mangostreet.BaseActivity;
@@ -31,6 +35,9 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
     /**
      * 第一个CardView
      */
+    @BindView(R.id.cd_view1)
+    CardView cardView1;
+
     @BindView(R.id.xfv_user)
     XfeImageView xfvUserImage;
 
@@ -49,18 +56,31 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
     /**
      * 第二个CardView
      */
+    @BindView(R.id.cd_view2)
+    CardView cardView2;
+
     @BindView(R.id.tv_identificationtext)
     TextView tvIdention;          //学号认证
     /**
      * 第三个CardView
      */
+    @BindView(R.id.cd_view3)
+    CardView cardView3;
+
     @BindView(R.id.tv_released)
     TextView tvReleased;        //发布
     /**
      * 第四个CardView
      */
+    @BindView(R.id.cd_view4)
+    CardView cardView4;
+
     @BindView(R.id.tv_collection)
     TextView tvCollection;       //收藏
+
+    //进度条
+    @BindView(R.id.mv_loading)
+    MetroLoadingView metroLoadingView;
 
     int releasedCount,collectCount;
 
@@ -72,10 +92,20 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
 
     @Override
     protected void initEvents() {
-        if(iUserInfoPer.getOnlineNum()){
-            setCollectAndReseled();
-        }
-        setUserData(MangoApplication.getUser());
+        //加载动画
+        metroLoadingView.start();
+        /**
+         * 思路：
+         * per一个方法：调用Model方法判断本地是否有数据，如果有，加载，取消动画
+         * 如果没有，开个子线程发起请求，等请求响应完关闭动画， 通知per，调用view取消动画，加载数据
+         */
+        iUserInfoPer.checkLocalData();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -119,5 +149,19 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
         }else{
             tvIdention.setText("已认证");
         }
+    }
+
+    @Override
+    public void showCardViews() {
+        cardView1.setVisibility(View.VISIBLE);
+        cardView2.setVisibility(View.VISIBLE);
+        cardView3.setVisibility(View.VISIBLE);
+        cardView4.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void stopProgress() {
+        metroLoadingView.stop();
+        metroLoadingView.setVisibility(View.GONE);
     }
 }
