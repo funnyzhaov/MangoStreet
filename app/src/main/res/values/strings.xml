@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MangoStreet</string>
+    <string name="search">search</string>
+    <string name="classify">分类</string>
+    <string name="address">更换学校</string>
+    <string name="open">打开</string>
+    <string name="close">关闭</string>
+    <string name="back">back</string>
+    <string name="logo">logo</string>
+    <string name="productname">芒果二手街</string>
+    <string name="hint_username">邮箱</string>
+    <string name="login_hint_username">邮箱或用户名</string>
+    <string name="hint_password">密码</string>
+    <string name="login">登录</string>
+    <string name="registered">注册账号</string>
+    <string name="forgetpassword">忘记密码</string>
+</resources>

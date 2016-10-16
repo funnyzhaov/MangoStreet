@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+    <!--头部-->
+    <LinearLayout
+        android:id="@+id/ll_top"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageView
+            android:id="@+id/lv_back"
+            android:layout_gravity="center"
+            android:src="@drawable/page_back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:contentDescription="返回按钮"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/userpage_editor"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_editor"
+            android:contentDescription="编辑信息"
+            />
+    </LinearLayout>
+    <!--用户信息布局-->
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="180dp"
+        android:elevation="5dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="10dp"
+        >
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <me.funnyzhao.mangostreet.ui.customview.XfeImageView
+                android:id="@+id/xfv_user"
+                android:layout_width="78dp"
+                android:src="@mipmap/ic_launcher"
+                android:layout_height="78dp" />
+        </FrameLayout>
+        <LinearLayout
+            android:layout_marginLeft="56dp"
+            android:layout_gravity="center"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:layout_width="270dp"
+            android:layout_height="170dp">
+            <TextView
+                android:id="@+id/tv_usernametext"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:text="null"
+                android:textColor="#101010"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:background="@mipmap/userinfo_line"
+                android:layout_width="250dp"
+                android:layout_height="20dp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_deparement"
+                    android:textSize="16sp"
+                    android:text="院系:"
+                    android:textColor="#ff9800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:paddingLeft="50dp"
+                    android:id="@+id/tv_deparementtext"
+                    android:textSize="16sp"
+                    android:text="未填写"
+                    android:textColor="#101010"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <ImageView
+                android:background="@mipmap/userinfo_line"
+                android:layout_width="250dp"
+                android:layout_height="20dp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_major"
+                    android:textSize="16sp"
+                    android:text="专业:"
+                    android:textColor="#ff9800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:paddingLeft="50dp"
+                    android:id="@+id/tv_majortext"
+                    android:textSize="16sp"
+                    android:text="未填写"
+                    android:textColor="#101010"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+            <ImageView
+                android:background="@mipmap/userinfo_line"
+                android:layout_width="250dp"
+                android:layout_height="20dp" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_starttime"
+                    android:textSize="16sp"
+                    android:text="入学时间:"
+                    android:textColor="#ff9800"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:paddingLeft="80dp"
+                    android:id="@+id/tv_starttimetext"
+                    android:textSize="16sp"
+                    android:text="未填写"
+                    android:textColor="#101010"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="90dp"
+        android:elevation="5dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="10dp"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:text="学号认证:"
+            android:textSize="22sp"
+            android:textColor="#8bc34a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_identificationtext"
+            android:layout_marginLeft="160dp"
+            android:layout_gravity="center_vertical"
+            android:text="已认证"
+            android:textSize="22sp"
+            android:textColor="#101010"
+            android:textStyle="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="90dp"
+        android:elevation="5dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="10dp"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:text="已发布:"
+            android:textSize="22sp"
+            android:textColor="#8bc34a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_released"
+            android:layout_marginLeft="160dp"
+            android:layout_gravity="center_vertical"
+            android:text="0"
+            android:textSize="22sp"
+            android:textColor="#101010"
+            android:textStyle="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:layout_marginTop="10dp"
+        android:layout_width="360dp"
+        android:layout_gravity="center"
+        android:layout_height="90dp"
+        android:elevation="5dp"
+        card_view:cardBackgroundColor="@color/white"
+        card_view:cardPreventCornerOverlap="true"
+        card_view:cardUseCompatPadding="true"
+        card_view:cardCornerRadius="10dp"
+        >
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center_vertical"
+            android:text="收藏:"
+            android:textSize="22sp"
+            android:textColor="#8bc34a"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tv_collection"
+            android:layout_marginLeft="160dp"
+            android:layout_gravity="center_vertical"
+            android:text="0"
+            android:textSize="22sp"
+            android:textColor="#101010"
+            android:textStyle="normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

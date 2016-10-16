@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="MangoTheme" parent="MangoTheme.Base">
+        <!-- Customize your theme here. -->
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+    </style>
+    <!-- toolbar菜单样式 -->
+    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
+    <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+</resources>

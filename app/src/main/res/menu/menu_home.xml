@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <!--搜索 -->
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="100"
+        android:title="@string/search"
+        app:showAsAction="ifRoom"
+        android:icon="@drawable/home_menu_search25"
+        />
+    <!--分类 -->
+    <item
+        android:id="@+id/action_classify"
+        android:orderInCategory="100"
+        android:title="@string/classify"
+        app:showAsAction="never"
+        />
+    <!--位置选择-->
+    <item
+        android:id="@+id/action_address"
+        android:title="@string/address"
+        app:showAsAction="never"
+        />
+</menu>

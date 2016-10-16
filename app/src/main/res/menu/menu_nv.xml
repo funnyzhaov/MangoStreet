@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuitem_update"
+            android:checkable="true"
+            android:title="版本升级"
+            android:icon="@mipmap/home_menu_update"/>
+        <item
+            android:id="@+id/menuitem_about"
+            android:checkable="true"
+            android:title="关于作者"
+            android:icon="@mipmap/home_menu_about"/>
+        <item
+            android:id="@+id/menuitem_out"
+            android:checkable="true"
+            android:title="退出登录"
+            android:icon="@mipmap/home_menu_out"/>
+    </group>
+</menu>

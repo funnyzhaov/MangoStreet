@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/iv_back"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/login_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/back" />
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/replace_logo"
+        android:contentDescription="@string/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/activity_product_text"
+        android:layout_marginTop="16dp"
+        android:text="@string/productname"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_username"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:inputType="textEmailAddress"
+        android:hint="@string/hint_username"
+        android:textSize="@dimen/activity_normal_text"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="220dp"
+        android:background="@drawable/login_et_selector"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/et_password"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:inputType="textPassword"
+        android:hint="@string/hint_password"
+        android:textSize="@dimen/activity_normal_text"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="220dp"
+        android:background="@drawable/login_et_selector"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/bt_registered"
+        android:text="@string/registered"
+        android:textSize="@dimen/activity_normal_text"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginTop="16dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content" />
+</LinearLayout>
