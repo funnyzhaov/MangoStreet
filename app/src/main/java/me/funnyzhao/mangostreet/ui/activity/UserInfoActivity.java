@@ -94,13 +94,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
     protected void initEvents() {
         //加载动画
         metroLoadingView.start();
-        /**
-         * 思路：
-         * per一个方法：调用Model方法判断本地是否有数据，如果有，加载，取消动画
-         * 如果没有，开个子线程发起请求，等请求响应完关闭动画， 通知per，调用view取消动画，加载数据
-         */
         iUserInfoPer.checkLocalData();
-
     }
 
     @Override
