@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--头部-->
+    <LinearLayout
+        android:id="@+id/ed_ll_top"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageView
+            android:id="@+id/ed_iv_back"
+            android:layout_gravity="center"
+            android:src="@drawable/page_back"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:contentDescription="返回按钮"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_gravity="center"
+            android:src="@drawable/page_done"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/ed_iv_done"
+            android:contentDescription="完成"
+            />
+    </LinearLayout>
+    <me.funnyzhao.mangostreet.ui.customview.XfeImageView
+        android:layout_gravity="center"
+        android:id="@+id/ed_xfv_user"
+        android:layout_width="78dp"
+        android:src="@mipmap/usericon_default"
+        android:layout_height="78dp" />
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="15dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="用户名"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_username"
+            android:layout_weight="4"
+            android:inputType="text"
+            android:textColor="#6b6b6b"
+            android:layout_width="0dp"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="学校"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_school"
+            android:layout_weight="4"
+            android:inputType="text"
+            android:textColor="#6b6b6b"
+            android:layout_width="0dp"
+            android:background="@null"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="院系"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_department"
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:inputType="text"
+            android:background="@null"
+            android:textColor="#6b6b6b"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="专业"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_major"
+            android:layout_weight="4"
+            android:inputType="text"
+            android:background="@null"
+            android:textColor="#6b6b6b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="电话"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_tel"
+            android:layout_weight="4"
+            android:inputType="phone"
+            android:background="@null"
+            android:textColor="#6b6b6b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="QQ"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/ed_et_tentqq"
+            android:inputType="number"
+            android:layout_weight="4"
+            android:background="@null"
+            android:textColor="#6b6b6b"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ImageView
+        android:background="@mipmap/userinfo_line"
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_marginLeft="16dp"
+            android:text="入学年份"
+            android:textSize="18dp"
+            android:textColor="#101010"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <!--下拉列表-->
+        <Spinner
+            android:id="@+id/ed_sp_starttime"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+</LinearLayout>

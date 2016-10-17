@@ -70,7 +70,7 @@
             <me.funnyzhao.mangostreet.ui.customview.XfeImageView
                 android:id="@+id/xfv_user"
                 android:layout_width="78dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/usericon_default"
                 android:layout_height="78dp" />
         </FrameLayout>
         <LinearLayout

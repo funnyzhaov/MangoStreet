@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.ImageView;
@@ -22,7 +23,7 @@ import me.funnyzhao.mangostreet.view.IUserInfoView;
  * 用户信息展示页
  */
 
-public class UserInfoActivity extends BaseActivity implements IUserInfoView{
+public class UserInfoActivity extends BaseActivity implements IUserInfoView,View.OnClickListener{
     /**
      * 头部按钮
      */
@@ -93,6 +94,8 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
     @Override
     protected void initEvents() {
         //加载动画
+        ivBack.setOnClickListener(this);
+        ivEditor.setOnClickListener(this);
         metroLoadingView.start();
         iUserInfoPer.checkLocalData();
     }
@@ -157,5 +160,17 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
     public void stopProgress() {
         metroLoadingView.stop();
         metroLoadingView.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==R.id.lv_back){
+            finish();
+            return;
+        }
+        if (v.getId()==R.id.iv_editor){
+            Intent intent=new Intent(this,EditorUserActivity.class);
+            startActivity(intent);
+        }
     }
 }

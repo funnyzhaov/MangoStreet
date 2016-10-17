@@ -192,7 +192,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
             //判断当前用户的imageurl、认证
             if(imageUrl==null ||imageUrl.equals("")){
                 //使用默认图片
-                ivUserImage.setImageResource(R.mipmap.home_menu_update);
+                ivUserImage.setImageResource(R.mipmap.usericon_default);
             }else {
                 //使用当前图片url加载图片
                 //测试代码
