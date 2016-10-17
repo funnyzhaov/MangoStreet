@@ -43,5 +43,7 @@ dependencies {
     compile 'com.android.support:cardview-v7:23.2.0'
     //进度条
     compile 'com.mmga.metroloading:metroloading:1.0.0'
+    //登录进度条
+    compile 'com.kaopiz:kprogresshud:1.0.5'
     testCompile 'junit:junit:4.12'
 }

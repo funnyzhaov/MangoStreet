@@ -198,10 +198,14 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                 //测试代码
                 ivUserImage.setImageResource(R.mipmap.home_menu_about);
             }
-            if(iden.booleanValue()){
-                tvIdentification.setText("学号认证(已认证)");
-            }else{
+            if (iden==null){
                 tvIdentification.setText("学号认证(未认证)");
+            }else {
+                if(iden.booleanValue()){
+                    tvIdentification.setText("学号认证(已认证)");
+                }else{
+                    tvIdentification.setText("学号认证(未认证)");
+                }
             }
         }
     }

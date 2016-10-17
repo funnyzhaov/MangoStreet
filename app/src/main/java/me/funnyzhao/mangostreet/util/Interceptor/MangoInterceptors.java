@@ -21,7 +21,9 @@ public class MangoInterceptors implements Interceptor{
 
             //封装headers
             Request request = chain.request().newBuilder()
-                    .addHeader("Content-Type", "application/json") //添加请求头信息
+                    .header("Content-Type", "application/json") //添加请求头信息
+                    .header("X-Bmob-Application-Id","9b00125d964e776ec5b4c79c06dd6c05")
+                    .header("X-Bmob-REST-API-Key","f69e70ef1a410db0343f21ffc2ea8b7e")
                     .build();
             Headers headers = request.headers();
             //打印

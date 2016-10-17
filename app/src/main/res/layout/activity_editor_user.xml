@@ -41,7 +41,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="15dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -66,7 +66,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -91,7 +91,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -116,7 +116,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -141,7 +141,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -166,7 +166,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -191,7 +191,7 @@
     <ImageView
         android:background="@mipmap/userinfo_line"
         android:layout_width="match_parent"
-        android:layout_height="25dp" />
+        android:layout_height="28dp" />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"

@@ -33,6 +33,7 @@ public class LoginImpl extends ControlUser implements ILoginPer {
             if("".equals(username) || "".equals(password)){
                 iLoginView.showResponseMsg("输入不合法!");
             }else {
+                iLoginView.getKprogressHUD().show();
                 iLoginModel.userLogin(this, username, password, this);
             }
         }
@@ -56,10 +57,11 @@ public class LoginImpl extends ControlUser implements ILoginPer {
     @Override
     public void showRequestInfo(String info) {
         if("用户名或密码错误!".equals(info) || "请求失败".equals(info)) {
+            iLoginView.getKprogressHUD().dismiss();
             iLoginView.showResponseMsg(info);
             iLoginView.clearEditText();
         }else {
-            iLoginView.showResponseMsg(info);
+            iLoginView.getKprogressHUD().dismiss();
             //登录成功进入首页
             Intent intent=new Intent(mContext, HomeActivity.class);
             intent.putExtra("username",hashMap.get("username"));

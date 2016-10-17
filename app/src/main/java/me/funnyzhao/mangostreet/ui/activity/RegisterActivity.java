@@ -5,6 +5,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 import butterknife.BindView;
 import me.funnyzhao.mangostreet.BaseActivity;
 import me.funnyzhao.mangostreet.R;
@@ -31,6 +33,8 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     private IRegisterPer iRegisterPer;
 
+    private KProgressHUD kProgressHUD;  //注册进度条
+
     @Override
     protected void setNowContentView() {
         setContentView(R.layout.activity_registered);
@@ -38,6 +42,13 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
 
     @Override
     protected void initEvents() {
+        kProgressHUD= KProgressHUD.create(RegisterActivity.this);
+        kProgressHUD.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("注册验证中...")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .setWindowColor(R.color.colorPrimary);
         btRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +93,13 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
     }
 
     @Override
+    public KProgressHUD getKprogressHUD() {
+        return kProgressHUD;
+    }
+
+    @Override
     protected void initDataOrPresenter() {
-        iRegisterPer=new RegisterPerImpl(this);
+        iRegisterPer=new RegisterPerImpl(this,this);
     }
 
     @Override

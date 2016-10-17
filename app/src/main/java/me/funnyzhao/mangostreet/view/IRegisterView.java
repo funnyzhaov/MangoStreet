@@ -1,5 +1,7 @@
 package me.funnyzhao.mangostreet.view;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 /**
  * Created by funnyzhao .
  * RegisterActivity的UI操作
@@ -36,4 +38,9 @@ public interface IRegisterView extends BaseView{
      * 清空输入框内信息
      */
     void clearEditText();
+    /**
+     * 获取进度条实例
+     * @return
+     */
+    KProgressHUD getKprogressHUD();
 }

@@ -1,5 +1,7 @@
 package me.funnyzhao.mangostreet.view;
 
+import com.kaopiz.kprogresshud.KProgressHUD;
+
 /**
  * Created by funnyzhao .
  * 登录页面UI操作
@@ -28,4 +30,10 @@ public interface ILoginView extends BaseView{
      * @param msg
      */
     void showResponseMsg(String msg);
+
+    /**
+     * 获取进度条实例
+     * @return
+     */
+    KProgressHUD getKprogressHUD();
 }

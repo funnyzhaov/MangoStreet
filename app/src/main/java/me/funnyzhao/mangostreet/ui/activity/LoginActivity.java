@@ -1,11 +1,14 @@
 package me.funnyzhao.mangostreet.ui.activity;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.kaopiz.kprogresshud.KProgressHUD;
 
 import butterknife.BindView;
 import me.funnyzhao.mangostreet.BaseActivity;
@@ -40,6 +43,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     TextView tvForget;           //忘记密码（找回密码）
 
     private ILoginPer iLoginPer;
+
+    private KProgressHUD kProgressHUD;  //登录进度条
+
     @Override
     protected void setNowContentView() {
         setContentView(R.layout.activity_login);
@@ -47,6 +53,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     @Override
     protected void initEvents() {
+        kProgressHUD= KProgressHUD.create(LoginActivity.this);
+        kProgressHUD.setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setLabel("正在验证...")
+                .setCancellable(true)
+                .setAnimationSpeed(2)
+                .setDimAmount(0.5f)
+                .setWindowColor(R.color.colorPrimary);
         btLogin.setOnClickListener(this);
         tvRegistered.setOnClickListener(this);
         tvForget.setOnClickListener(this);
@@ -69,7 +82,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 }
                 break;
             case R.id.tv_registered:
-
+                Intent intent=new Intent(this,RegisterActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case R.id.tv_forget:
 
@@ -101,6 +116,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     @Override
     public void showResponseMsg(String msg) {
         Toast.makeText(getApplicationContext(),msg,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public KProgressHUD getKprogressHUD() {
+        return kProgressHUD;
     }
 
     @Override
