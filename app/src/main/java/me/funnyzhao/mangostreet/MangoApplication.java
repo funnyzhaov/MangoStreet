@@ -2,7 +2,6 @@ package me.funnyzhao.mangostreet;
 
 import android.app.Application;
 
-import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
@@ -24,16 +23,14 @@ public class MangoApplication extends Application{
      *  在应用运行期间，如果用户发布物品或者收藏了物品信息，则更新这个map :add
      *               如果用户取消了收藏或者删除了发布信息，则更新这个map:reduce
      */
-    private static HashMap<String,Integer> hashMap=new HashMap<>();
+    private static HashMap<String,Integer> hashMap=new HashMap<>(100);
 
     @Override
     public void onCreate() {
+        Logger.init(TAG);
+        Logger.d("Hello");
         super.onCreate();
-        Logger.init(TAG)
-                .hideThreadInfo()
-                .methodCount(3)
-                .logLevel(LogLevel.NONE)
-                .methodOffset(2);
+
     }
 
     public static  _User getUser() {

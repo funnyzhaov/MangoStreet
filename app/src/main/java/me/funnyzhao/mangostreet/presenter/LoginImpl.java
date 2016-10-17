@@ -56,6 +56,7 @@ public class LoginImpl extends ControlUser implements ILoginPer {
     @Override
     public void showRequestInfo(String info) {
         if("用户名或密码错误!".equals(info) || "请求失败".equals(info)) {
+            iLoginView.showResponseMsg(info);
             iLoginView.clearEditText();
         }else {
             iLoginView.showResponseMsg(info);

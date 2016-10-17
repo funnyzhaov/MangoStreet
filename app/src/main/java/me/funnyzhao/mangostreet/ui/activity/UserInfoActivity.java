@@ -110,7 +110,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView{
 
     @Override
     public void setCollectAndReseled() {
-        releasedCount= MangoApplication.mapGet("releasedCount");
+        releasedCount=MangoApplication.mapGet("releasedCount");
         collectCount=MangoApplication.mapGet("collectCount");
         if(releasedCount>0){
             tvReleased.setText(String.valueOf(releasedCount));

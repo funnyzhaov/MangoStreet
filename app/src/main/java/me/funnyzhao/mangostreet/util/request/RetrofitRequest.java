@@ -1,5 +1,8 @@
 package me.funnyzhao.mangostreet.util.request;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
@@ -37,6 +40,8 @@ public  class RetrofitRequest {
     private static Gson gson;
     private  static  Retrofit retrofit;
     private static HashMap<String,Object> hashMap=new HashMap<>();
+
+    static Handler handle=new Handler(Looper.getMainLooper());
     //初始化gson、retrofit
     private static void init() {
         OkHttpClient client = new OkHttpClient().newBuilder()
@@ -75,7 +80,7 @@ public  class RetrofitRequest {
                     HashMap<String,String> hashMap=new HashMap<String, String>();
                     hashMap.put("username",response.body().getUsername());
                     hashMap.put("objectId",response.body().getObjectId());
-                    Logger.json(response.body().toString());
+                    Logger.d(response.body().toString());
                     controlUser.setOnlineData(hashMap);
                     controlUser.setOnlineUser(response.body());
                     //设置全局的用户信息
@@ -86,7 +91,7 @@ public  class RetrofitRequest {
 
             @Override
             public void onFailure(Call<_User> call, Throwable t) {
-                iLoginPer.showRequestInfo("请求失败");
+                Logger.e("请求失败",t);
             }
         });
     }
@@ -112,7 +117,7 @@ public  class RetrofitRequest {
             }
             @Override
             public void onFailure(Call<SuccessBody> call, Throwable t) {
-                iRegisterPer.showRequestInfo("请求失败");
+                Logger.e("请求失败",t);
             }
         });
     }
@@ -136,7 +141,7 @@ public  class RetrofitRequest {
 
             @Override
             public void onFailure(Call<ItemResultBody> call, Throwable t) {
-                Logger.d(t);
+                Logger.e("请求失败",t);
             }
         });
 
@@ -157,13 +162,18 @@ public  class RetrofitRequest {
                 if (response.isSuccessful()){
                     int collectCount=response.body().getResults().length;
                     MangoApplication.mapPut("collectCount",collectCount);
-                    iUserInfoPer.getNetDataSuccess();
+                    handle.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            iUserInfoPer.getNetDataSuccess();
+                        }
+                    },2000);
                 }
             }
 
             @Override
             public void onFailure(Call<CollectResultBody> call, Throwable t) {
-                Logger.d(t);
+                Logger.e("请求失败",t);
             }
         });
     }

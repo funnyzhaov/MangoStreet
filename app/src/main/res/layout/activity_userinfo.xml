@@ -187,7 +187,7 @@
             android:id="@+id/tv_identificationtext"
             android:layout_marginLeft="160dp"
             android:layout_gravity="center_vertical"
-            android:text="已认证"
+            android:text="null"
             android:textSize="22sp"
             android:textColor="#101010"
             android:textStyle="normal"

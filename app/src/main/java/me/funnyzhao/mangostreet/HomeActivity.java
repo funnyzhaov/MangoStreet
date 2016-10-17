@@ -231,9 +231,9 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         switch (v.getId()){
             case R.id.iv_user:
             case R.id.tv_onlineusername:
-                    //加载成功进入用户信息页
-                    Intent intent =new Intent(this, UserInfoActivity.class);
-                    startActivity(intent);
+                //加载成功进入用户信息页
+                Intent intent =new Intent(this, UserInfoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_identification:
                 //用户学号认证页面
