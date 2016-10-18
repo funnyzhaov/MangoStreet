@@ -13,6 +13,8 @@ import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.api.CollectApi;
 import me.funnyzhao.mangostreet.api.ItemApi;
 import me.funnyzhao.mangostreet.api.UserApi;
+import me.funnyzhao.mangostreet.bean.Collect;
+import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.bean.request.RegisterBody;
 import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
@@ -125,15 +127,22 @@ public  class RetrofitRequest {
     /**
      * 获取当前在线用户的发布物品集合
      */
-    public static void toGetItemsOnline(String userName){
+    public static void toGetItemsOnline(final String userName){
         init();
         ItemApi itemApi=retrofit.create(ItemApi.class);
-        Call<ItemResultBody> call=itemApi.getItemByuserName(userName);
+        Call<ItemResultBody> call=itemApi.getItemByuserName();
         call.enqueue(new Callback<ItemResultBody>() {
             @Override
             public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
                 if (response.isSuccessful()){
-                    int releasedCount=response.body().getResults().length;
+                    int releasedCount=0;
+                    Item[] items=response.body().getResults();
+                    for (Item item:items) {
+                        if (item.getUserName().equals(userName)){
+                            releasedCount++;
+                            continue;
+                        }
+                    }
                     MangoApplication.mapPut("releasedCount",releasedCount);
                     Logger.d("TAG","发布数请求成功");
                 }
@@ -152,15 +161,22 @@ public  class RetrofitRequest {
      * @param userName
      * @return
      */
-    public static void toGetCollectOnline(String userName, final IUserInfoPer iUserInfoPer){
+    public static void toGetCollectOnline(final String userName, final IUserInfoPer iUserInfoPer){
         init();
         CollectApi collectApi=retrofit.create(CollectApi.class);
-        Call<CollectResultBody> call=collectApi.getCollectByuserName(userName);
+        Call<CollectResultBody> call=collectApi.getCollectByuserName();
         call.enqueue(new Callback<CollectResultBody>() {
             @Override
             public void onResponse(Call<CollectResultBody> call, Response<CollectResultBody> response) {
                 if (response.isSuccessful()){
-                    int collectCount=response.body().getResults().length;
+                    int collectCount=0;
+                    Collect[] collects=response.body().getResults();
+                    for (Collect collect:collects) {
+                        if (collect.getUserName().equals(userName)){
+                            collectCount++;
+                            continue;
+                        }
+                    }
                     MangoApplication.mapPut("collectCount",collectCount);
                     handle.postDelayed(new Runnable() {
                         @Override
