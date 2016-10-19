@@ -7,6 +7,7 @@ android {
         applicationId "me.funnyzhao.mangostreet"
         minSdkVersion 17
         targetSdkVersion 23
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -24,6 +25,8 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //bmobsdk,用于文件上传
+    compile 'cn.bmob.android:bmob-sdk:3.5.0'
 
     compile 'com.android.support:appcompat-v7:23.2.0'
     //material design支持库
@@ -45,5 +48,12 @@ dependencies {
     compile 'com.mmga.metroloading:metroloading:1.0.0'
     //登录进度条
     compile 'com.kaopiz:kprogresshud:1.0.5'
+    //Material Design 风格对话框
+    compile 'me.drakeet.materialdialog:library:1.3.1'
     testCompile 'junit:junit:4.12'
+}
+configurations {
+    //忽略重复的依赖
+    all*.exclude  module: 'okhttp'
+    all*.exclude  module: 'gson'
 }

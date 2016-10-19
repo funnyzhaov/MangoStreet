@@ -1,7 +1,6 @@
 package me.funnyzhao.mangostreet.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by funnyzhao .
@@ -14,8 +13,8 @@ public class _User implements Serializable{
     private String password;
     private Boolean mobilePhoneNumberVerified;
     private String mobilePhoneNumber;
-    private Number tentqq;
-    private Number tel;
+    private Integer tentqq;
+    private Integer tel;
     private String starttime;      //入学时间
     private String school;         //学校
     private String major;          //专业
@@ -24,8 +23,21 @@ public class _User implements Serializable{
     private String department;     //院系
     private Boolean emailVerified; //邮箱认证
     private String email;          //邮箱
-    private Date createdAt;
-    private Date updatedAt;
+    private String createdAt;
+    private String updatedAt;
+    private String sessionToken;
+
+    public String getSessionToken() {
+        return sessionToken;
+    }
+
+    public void setObjectId(String objectId) {
+        this.objectId = objectId;
+    }
+
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
+    }
 
     public String getObjectId() {
         return objectId;
@@ -63,19 +75,19 @@ public class _User implements Serializable{
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public Number getTentqq() {
+    public Integer getTentqq() {
         return tentqq;
     }
 
-    public void setTentqq(Number tentqq) {
+    public void setTentqq(Integer tentqq) {
         this.tentqq = tentqq;
     }
 
-    public Number getTel() {
+    public Integer getTel() {
         return tel;
     }
 
-    public void setTel(Number tel) {
+    public void setTel(Integer tel) {
         this.tel = tel;
     }
 
@@ -139,11 +151,11 @@ public class _User implements Serializable{
         this.email = email;
     }
 
-    public Date getCreatedAt() {
+    public String getCreatedAt() {
         return createdAt;
     }
 
-    public Date getUpdatedAt() {
+    public String getUpdatedAt() {
         return updatedAt;
     }
 

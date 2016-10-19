@@ -6,6 +6,7 @@ import com.orhanobut.logger.Logger;
 
 import java.util.HashMap;
 
+import cn.bmob.v3.Bmob;
 import me.funnyzhao.mangostreet.bean._User;
 
 /**
@@ -27,6 +28,7 @@ public class MangoApplication extends Application{
 
     @Override
     public void onCreate() {
+        Bmob.initialize(this, "9b00125d964e776ec5b4c79c06dd6c05");
         Logger.init(TAG);
         Logger.d("Hello");
         super.onCreate();
@@ -98,4 +100,6 @@ public class MangoApplication extends Application{
     public static Integer mapGet(String key) {
         return hashMap.get(key);
     }
+
+
 }

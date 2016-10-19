@@ -20,7 +20,9 @@ import me.funnyzhao.mangostreet.bean.request.RegisterBody;
 import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import me.funnyzhao.mangostreet.bean.success.SuccessBody;
+import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
+import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
 import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
@@ -51,7 +53,7 @@ public  class RetrofitRequest {
                 .build();
         gson = new GsonBuilder()
                 //配置你的Gson
-                .setDateFormat("yyyy-MM-dd hh:mm:ss")
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
                 .create();
        retrofit = new Retrofit.Builder()
                 .baseUrl("https://api.bmob.cn/1/")
@@ -87,6 +89,7 @@ public  class RetrofitRequest {
                     controlUser.setOnlineUser(response.body());
                     //设置全局的用户信息
                     MangoApplication.setUser(response.body());
+                    Logger.d(response.body().getSessionToken());
                     iLoginPer.showRequestInfo("登录成功!");
                 }
             }
@@ -189,6 +192,33 @@ public  class RetrofitRequest {
 
             @Override
             public void onFailure(Call<CollectResultBody> call, Throwable t) {
+                Logger.e("请求失败",t);
+            }
+        });
+    }
+
+    /**
+     * 获取当前用户的收藏数
+     * @return
+     */
+    public static void toUpdateUser(final _User user, final IEditorUserPer iEditorUserPer){
+        init();
+        UserApi userApi=retrofit.create(UserApi.class);
+        Logger.d(MangoApplication.getUser().getSessionToken());
+        Logger.d(MangoApplication.getUser().getObjectId());
+        Call<UpdateUserBody> call=userApi.updateUserInfo(MangoApplication.getUser().getSessionToken()
+                ,MangoApplication.getUser().getObjectId(),user);
+        call.enqueue(new Callback<UpdateUserBody>() {
+            @Override
+            public void onResponse(Call<UpdateUserBody> call, Response<UpdateUserBody> response) {
+                if (response.isSuccessful()){
+                    iEditorUserPer.updateUserOk();
+                    Logger.d(response.body().toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UpdateUserBody> call, Throwable t) {
                 Logger.e("请求失败",t);
             }
         });
