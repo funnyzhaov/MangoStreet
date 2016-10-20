@@ -9,13 +9,13 @@
     android:layout_height="180dp">
     <me.funnyzhao.mangostreet.ui.customview.XfeImageView
         android:id="@+id/iv_user"
-        android:layout_width="78dp"
-        android:layout_height="78dp"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
         android:layout_gravity="center"
         android:layout_marginLeft="24dp"
         android:clickable="false"
         im:type="circle"
-        android:src="@mipmap/usericon_default"
+        android:src="@mipmap/head_loading_image"
         />
     <LinearLayout
         android:layout_marginLeft="24dp"

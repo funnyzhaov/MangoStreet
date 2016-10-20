@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.orhanobut.logger.Logger;
 
@@ -78,7 +79,7 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
     private static final int CHOOSE_PICTURE=1;
     private int sppositon;
     //上传后的url
-    private String imageUrl;
+    private String imageUrl="";
     private IEditorUserPer iEditorUserPer;
     @Override
     protected void setNowContentView() {
@@ -174,6 +175,18 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
      * 初始化EditText
      */
     private void initAllEditText(){
+        //头像
+
+        String url=MangoApplication.getUser().getImageurl();
+        if (url==null ||url.equals("'")){
+            xfvUserImage.setImageResource(R.mipmap.head_loading_image);
+        }else {
+            Glide.with(this)
+                    .load(url)
+                    .centerCrop()
+                    .error(R.mipmap.head_error_image)
+                    .into(xfvUserImage);
+        }
         //初始化数据
         etUserName.setText(MangoApplication.getUser().getUsername());
         if (MangoApplication.getUser().getSchool()==null ||MangoApplication.getUser().getSchool().equals("")){
@@ -232,7 +245,7 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         _User user=new _User();
         if (!etUserName.getText().toString().equals(MangoApplication.getUser().getUsername())){
             user.setUsername(etUserName.getText().toString());
-            //更新全局信息
+            MangoApplication.getUser().setUsername(user.getUsername());
         }
         user.setSchool(etSchool.getText().toString());
         user.setDepartment(etDepartment.getText().toString());
@@ -241,7 +254,11 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         user.setTentqq(Integer.valueOf(etTentqq.getText().toString()));
         user.setStarttime(String.valueOf(timeList.get(sppositon)));
         //用户头像url
-        user.setImageurl(imageUrl);
+        if (!imageUrl.equals("")){
+            user.setImageurl(imageUrl);
+        }else {
+            user.setImageurl(MangoApplication.getUser().getImageurl());
+        }
         Logger.d(user);
         return user;
     }
@@ -275,6 +292,12 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
     public void showToastHint(String msg) {
         Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void backUserActivity() {
+        finish();
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
         String uploadPath;

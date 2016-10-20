@@ -1,5 +1,8 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.util.request.RetrofitRequest;
@@ -12,6 +15,7 @@ import me.funnyzhao.mangostreet.view.IEditorUserView;
 
 public class EditorUserPerImpl implements IEditorUserPer {
     private IEditorUserView iEditorUserView;
+    private Handler handler=new Handler(Looper.getMainLooper());
     private _User user;
     public EditorUserPerImpl(IEditorUserView iEditorUserView){
         this.iEditorUserView=iEditorUserView;
@@ -20,10 +24,10 @@ public class EditorUserPerImpl implements IEditorUserPer {
     public void saveData() {
         iEditorUserView.showDoneProgress();
         user=iEditorUserView.getNewData();
-        MangoApplication.getUser().setUsername(user.getUsername());
         MangoApplication.getUser().setDepartment(user.getDepartment());
         MangoApplication.getUser().setMajor(user.getMajor());
         MangoApplication.getUser().setStarttime(user.getStarttime());
+        MangoApplication.getUser().setImageurl(user.getImageurl());
         if (user!=null){
             updateData();
         }
@@ -44,6 +48,12 @@ public class EditorUserPerImpl implements IEditorUserPer {
     @Override
     public void updateUserOk() {
         iEditorUserView.stopDoneProgress();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                iEditorUserView.backUserActivity();
+            }
+        },1000);
     }
 
     /**

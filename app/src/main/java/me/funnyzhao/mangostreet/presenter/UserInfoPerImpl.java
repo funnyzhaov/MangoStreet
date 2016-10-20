@@ -26,6 +26,11 @@ public class UserInfoPerImpl implements IUserInfoPer {
             iUserInfoView.showCardViews();
             iUserInfoView.setCollectAndReseled();
             iUserInfoView.setUserData(MangoApplication.getUser());
+            if (MangoApplication.getUser().getImageurl()==null||MangoApplication.getUser().getImageurl().equals("")){
+               iUserInfoView.onLoadDefaultImage();
+            }else {
+                iUserInfoView.loadImage();
+            }
         }else {
             //如果本地不存在，则从服务器请求
             iUserInfoModel.isGetNumOk(this);
@@ -38,5 +43,7 @@ public class UserInfoPerImpl implements IUserInfoPer {
         iUserInfoView.showCardViews();
         iUserInfoView.setCollectAndReseled();
         iUserInfoView.setUserData(MangoApplication.getUser());
+        iUserInfoView.loadImage();
     }
+
 }

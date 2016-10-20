@@ -36,7 +36,7 @@
         android:layout_gravity="center"
         android:id="@+id/ed_xfv_user"
         android:layout_width="78dp"
-        android:src="@mipmap/usericon_default"
+        android:src="@mipmap/head_loading_image"
         android:layout_height="78dp" />
     <ImageView
         android:background="@mipmap/userinfo_line"

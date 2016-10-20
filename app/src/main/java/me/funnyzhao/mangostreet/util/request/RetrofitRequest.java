@@ -198,7 +198,7 @@ public  class RetrofitRequest {
     }
 
     /**
-     * 获取当前用户的收藏数
+     * 更新用户信息
      * @return
      */
     public static void toUpdateUser(final _User user, final IEditorUserPer iEditorUserPer){

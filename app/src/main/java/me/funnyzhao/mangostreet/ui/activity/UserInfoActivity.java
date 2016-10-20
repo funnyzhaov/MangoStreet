@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.mmga.metroloading.MetroLoadingView;
+import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import me.funnyzhao.mangostreet.BaseActivity;
@@ -86,6 +88,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
     int releasedCount,collectCount;
 
     private IUserInfoPer iUserInfoPer;
+
     @Override
     protected void setNowContentView() {
         setContentView(R.layout.activity_userinfo);
@@ -98,12 +101,14 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
         ivEditor.setOnClickListener(this);
         metroLoadingView.start();
         iUserInfoPer.checkLocalData();
+        Logger.d("onCreate");
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
         iUserInfoPer.checkLocalData();
+        Logger.d("onStart");
+        super.onStart();
     }
 
     @Override
@@ -164,13 +169,29 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
     }
 
     @Override
+    public void loadImage() {
+            Glide.with(UserInfoActivity.this)
+                    .load(MangoApplication.getUser().getImageurl())
+                    .centerCrop()
+                    .placeholder(R.mipmap.head_loading_image)
+                    .error(R.mipmap.head_error_image)
+                    .into(xfvUserImage);
+    }
+
+
+    @Override
+    public void onLoadDefaultImage() {
+        xfvUserImage.setImageResource(R.mipmap.usericon_default);
+    }
+
+    @Override
     public void onClick(View v) {
         if (v.getId()==R.id.lv_back){
             finish();
             return;
         }
         if (v.getId()==R.id.iv_editor){
-            Intent intent=new Intent(this,EditorUserActivity.class);
+            Intent intent=new Intent(UserInfoActivity.this,EditorUserActivity.class);
             startActivity(intent);
         }
     }

@@ -12,4 +12,5 @@ public interface IUserInfoPer {
     void  checkLocalData();
 
     void  getNetDataSuccess();
+
 }

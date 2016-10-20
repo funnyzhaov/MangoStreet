@@ -26,4 +26,14 @@ public interface IUserInfoView {
      * 隐藏动画加载条
      */
     void stopProgress();
+
+    /**
+     * 加载图片
+     */
+    void loadImage();
+
+    /**
+     * 加载图片  onStart
+     */
+    void onLoadDefaultImage();
 }

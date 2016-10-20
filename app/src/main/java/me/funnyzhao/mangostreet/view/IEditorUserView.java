@@ -49,4 +49,9 @@ public interface IEditorUserView {
      */
     void showToastHint(String msg);
 
+    /**
+     * 返回上一个页面
+     */
+    void backUserActivity();
+
 }

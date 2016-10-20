@@ -15,6 +15,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.HashMap;
 
 import butterknife.BindView;
@@ -207,8 +209,11 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                 ivUserImage.setImageResource(R.mipmap.usericon_default);
             }else {
                 //使用当前图片url加载图片
-                //测试代码
-                ivUserImage.setImageResource(R.mipmap.home_menu_about);
+                Glide.with(this)
+                        .load(MangoApplication.getUser().getImageurl())
+                        .centerCrop()
+                        .error(R.mipmap.head_error_image)
+                        .into(ivUserImage);
             }
             if (iden==null){
                 tvIdentification.setText("学号认证(未认证)");
