@@ -12,7 +12,7 @@ public class Collect {
     private String itemId;     //物品Id
     private String objectId;   //objectId
     private Date updatedAt;
-    private String userName;    //收藏人(用户名)
+    private String userObjectId;    //收藏人ID
 
     public Date getCreatedAt() {
         return createdAt;
@@ -46,12 +46,12 @@ public class Collect {
         this.updatedAt = updatedAt;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserObjectId() {
+        return userObjectId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserObjectId(String userObjectId) {
+        this.userObjectId = userObjectId;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Collect {
                 ", itemId='" + itemId + '\'' +
                 ", objectId='" + objectId + '\'' +
                 ", updatedAt=" + updatedAt +
-                ", userName='" + userName + '\'' +
+                ", userObjectId='" + userObjectId + '\'' +
                 '}';
     }
 }

@@ -130,7 +130,7 @@ public  class RetrofitRequest {
     /**
      * 获取当前在线用户的发布物品集合
      */
-    public static void toGetItemsOnline(final String userName){
+    public static void toGetItemsOnline(final String userObjectId){
         init();
         ItemApi itemApi=retrofit.create(ItemApi.class);
         Call<ItemResultBody> call=itemApi.getItemByuserName();
@@ -141,7 +141,7 @@ public  class RetrofitRequest {
                     int releasedCount=0;
                     Item[] items=response.body().getResults();
                     for (Item item:items) {
-                        if (item.getUserName().equals(userName)){
+                        if (item.getUserObjectId().equals(userObjectId)){
                             releasedCount++;
                             continue;
                         }
@@ -161,10 +161,10 @@ public  class RetrofitRequest {
 
     /**
      * 获取当前用户的收藏数
-     * @param userName
+     * @param userObjectId
      * @return
      */
-    public static void toGetCollectOnline(final String userName, final IUserInfoPer iUserInfoPer){
+    public static void toGetCollectOnline(final String userObjectId, final IUserInfoPer iUserInfoPer){
         init();
         CollectApi collectApi=retrofit.create(CollectApi.class);
         Call<CollectResultBody> call=collectApi.getCollectByuserName();
@@ -175,7 +175,7 @@ public  class RetrofitRequest {
                     int collectCount=0;
                     Collect[] collects=response.body().getResults();
                     for (Collect collect:collects) {
-                        if (collect.getUserName().equals(userName)){
+                        if (collect.getUserObjectId().equals(userObjectId)){
                             collectCount++;
                             continue;
                         }

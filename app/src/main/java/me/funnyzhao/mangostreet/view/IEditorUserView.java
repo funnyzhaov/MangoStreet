@@ -43,4 +43,10 @@ public interface IEditorUserView {
      */
     void stopDoneProgress();
 
+    /**
+     * 显示提示消息
+     * @param msg
+     */
+    void showToastHint(String msg);
+
 }

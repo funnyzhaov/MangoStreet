@@ -11,9 +11,9 @@ import me.funnyzhao.mangostreet.util.request.RetrofitRequest;
 public class UserInfoModelImpl implements IUserInfoModel {
     @Override
     public void isGetNumOk(IUserInfoPer iUserInfoPer) {
-        String userNme=MangoApplication.getUser().getUsername();
-         RetrofitRequest.toGetItemsOnline(userNme);
-         RetrofitRequest.toGetCollectOnline(userNme,iUserInfoPer);
+        String userObjectId=MangoApplication.getUser().getObjectId();
+         RetrofitRequest.toGetItemsOnline(userObjectId);
+         RetrofitRequest.toGetCollectOnline(userObjectId,iUserInfoPer);
     }
 
     @Override

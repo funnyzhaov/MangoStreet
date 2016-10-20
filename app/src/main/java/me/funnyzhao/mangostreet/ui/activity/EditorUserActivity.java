@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.orhanobut.logger.Logger;
@@ -119,7 +120,11 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
                 break;
             case R.id.ed_iv_done:
                 //完成
-                iEditorUserPer.saveData();
+                if (etUserName.getText().toString().isEmpty()){
+                    showToastHint("用户名不能为空");
+                }else {
+                    iEditorUserPer.saveData();
+                }
                 break;
             case R.id.ed_xfv_user:
                 showPhotoHint();
@@ -165,7 +170,6 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
             }
         });
     }
-
     /**
      * 初始化EditText
      */
@@ -226,7 +230,10 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
     @Override
     public _User getNewData() {
         _User user=new _User();
-        user.setUsername(etUserName.getText().toString());
+        if (!etUserName.getText().toString().equals(MangoApplication.getUser().getUsername())){
+            user.setUsername(etUserName.getText().toString());
+            //更新全局信息
+        }
         user.setSchool(etSchool.getText().toString());
         user.setDepartment(etDepartment.getText().toString());
         user.setMajor(etMagor.getText().toString());
@@ -264,6 +271,10 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         kProgressHUDone.dismiss();
     }
 
+    @Override
+    public void showToastHint(String msg) {
+        Toast.makeText(this,msg,Toast.LENGTH_SHORT).show();
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent result) {
         String uploadPath;

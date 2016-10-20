@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.util.request.RetrofitRequest;
 import me.funnyzhao.mangostreet.util.request.UploadImage;
@@ -19,6 +20,10 @@ public class EditorUserPerImpl implements IEditorUserPer {
     public void saveData() {
         iEditorUserView.showDoneProgress();
         user=iEditorUserView.getNewData();
+        MangoApplication.getUser().setUsername(user.getUsername());
+        MangoApplication.getUser().setDepartment(user.getDepartment());
+        MangoApplication.getUser().setMajor(user.getMajor());
+        MangoApplication.getUser().setStarttime(user.getStarttime());
         if (user!=null){
             updateData();
         }

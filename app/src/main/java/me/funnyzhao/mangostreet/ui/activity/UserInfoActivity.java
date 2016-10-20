@@ -103,6 +103,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
     @Override
     protected void onStart() {
         super.onStart();
+        iUserInfoPer.checkLocalData();
     }
 
     @Override

@@ -107,10 +107,21 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         ButterKnife.bind(this);
         initEvents();
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        //更新数据
+        if (isOnline()){
+            showUserWidget();
+        }else{
+            showHintWidget();
+        }
+
     }
 
     @Override
@@ -182,6 +193,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         return false;
     }
 
+
     /**
      * 根据判断显示相应信息
      */
@@ -207,6 +219,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                     tvIdentification.setText("学号认证(未认证)");
                 }
             }
+            tvUserName.setText(MangoApplication.getUser().getUsername());
         }
     }
     @Override

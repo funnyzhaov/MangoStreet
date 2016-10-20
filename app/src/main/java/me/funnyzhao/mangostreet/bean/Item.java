@@ -18,7 +18,7 @@ public class Item {
     private String itemSchool;        //物品所属学校（交易地点所在学校）
     private String objectId;          //itemId
     private Date updatedAt;
-    private String userName;          //发布人(用户名)
+    private String userObjectId;          //发布人(用户名)
 
     public String getCategoryName() {
         return categoryName;
@@ -100,12 +100,12 @@ public class Item {
         this.updatedAt = updatedAt;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUserObjectId() {
+        return userObjectId;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUserObjectId(String userObjectId) {
+        this.userObjectId = userObjectId;
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Item {
                 ", itemSchool='" + itemSchool + '\'' +
                 ", objectId='" + objectId + '\'' +
                 ", updatedAt=" + updatedAt +
-                ", userName='" + userName + '\'' +
+                ", userObjectId='" + userObjectId + '\'' +
                 '}';
     }
 }
