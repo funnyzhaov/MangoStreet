@@ -21,11 +21,11 @@ import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.presenter.IHomePer;
 import me.funnyzhao.mangostreet.ui.activity.LoginActivity;
 import me.funnyzhao.mangostreet.ui.activity.UserInfoActivity;
-import me.funnyzhao.mangostreet.ui.customview.XfeImageView;
 import me.funnyzhao.mangostreet.view.IHomeView;
 /**
  * Created by funnyzhao .
@@ -51,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     /**--------------
      * 侧滑菜单头部项
      *---------------*/
-    XfeImageView ivUserImage;
+    CircleImageView ivUserImage;
 
     TextView tvUserName;
 
@@ -85,7 +85,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         //NavigationView版本不稳定的问题，不能使用Bind来找到其中的控件
         navigationView=(NavigationView)findViewById(R.id.navigationView);
         View header=navigationView.getHeaderView(0);
-        ivUserImage=(XfeImageView)header.findViewById(R.id.iv_user);
+        ivUserImage=(CircleImageView)header.findViewById(R.id.iv_user);
         tvToLogin=(TextView)header.findViewById(R.id.tv_tologin);
         tvUserName=(TextView)header.findViewById(R.id.tv_onlineusername);
         tvIdentification=(TextView)header.findViewById(R.id.tv_identification);

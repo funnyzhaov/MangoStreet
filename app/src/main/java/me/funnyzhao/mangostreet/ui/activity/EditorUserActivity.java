@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.drakeet.materialdialog.MaterialDialog;
 import me.funnyzhao.mangostreet.BaseActivity;
 import me.funnyzhao.mangostreet.MangoApplication;
@@ -28,7 +29,6 @@ import me.funnyzhao.mangostreet.R;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.presenter.EditorUserPerImpl;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
-import me.funnyzhao.mangostreet.ui.customview.XfeImageView;
 import me.funnyzhao.mangostreet.util.ImageComp;
 import me.funnyzhao.mangostreet.util.UriUtils;
 import me.funnyzhao.mangostreet.view.IEditorUserView;
@@ -47,7 +47,7 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
 
     //头像
     @BindView(R.id.ed_xfv_user)
-    XfeImageView xfvUserImage;
+    CircleImageView xfvUserImage;
 
     //信息
     @BindView(R.id.ed_et_username)

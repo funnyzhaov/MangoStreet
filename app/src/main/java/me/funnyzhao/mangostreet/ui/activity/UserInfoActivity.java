@@ -11,13 +11,13 @@ import com.mmga.metroloading.MetroLoadingView;
 import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
+import de.hdodenhof.circleimageview.CircleImageView;
 import me.funnyzhao.mangostreet.BaseActivity;
 import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.R;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
 import me.funnyzhao.mangostreet.presenter.UserInfoPerImpl;
-import me.funnyzhao.mangostreet.ui.customview.XfeImageView;
 import me.funnyzhao.mangostreet.view.IUserInfoView;
 
 /**
@@ -42,7 +42,7 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
     CardView cardView1;
 
     @BindView(R.id.xfv_user)
-    XfeImageView xfvUserImage;
+    CircleImageView xfvUserImage;
 
     @BindView(R.id.tv_usernametext)
     TextView tvUserName;
@@ -173,7 +173,6 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
             Glide.with(UserInfoActivity.this)
                     .load(MangoApplication.getUser().getImageurl())
                     .centerCrop()
-                    .placeholder(R.mipmap.head_loading_image)
                     .error(R.mipmap.head_error_image)
                     .into(xfvUserImage);
     }
