@@ -28,6 +28,8 @@ public class EditorUserPerImpl implements IEditorUserPer {
         MangoApplication.getUser().setMajor(user.getMajor());
         MangoApplication.getUser().setStarttime(user.getStarttime());
         MangoApplication.getUser().setImageurl(user.getImageurl());
+        MangoApplication.getUser().setTel(user.getTel());
+        MangoApplication.getUser().setTentqq(user.getTentqq());
         if (user!=null){
             updateData();
         }

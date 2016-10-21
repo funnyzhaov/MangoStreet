@@ -207,12 +207,12 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         if (MangoApplication.getUser().getTel()==null){
             etTel.setHint("未填写");
         }else {
-            etTel.setText(String.valueOf(MangoApplication.getUser().getTel()));
+            etTel.setText(MangoApplication.getUser().getTel());
         }
         if (MangoApplication.getUser().getTentqq()==null){
             etTentqq.setHint("未填写");
         }else {
-            etTentqq.setText(String.valueOf(MangoApplication.getUser().getTentqq()));
+            etTentqq.setText(MangoApplication.getUser().getTentqq());
         }
         setSpinner();
     }
@@ -250,8 +250,8 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         user.setSchool(etSchool.getText().toString());
         user.setDepartment(etDepartment.getText().toString());
         user.setMajor(etMagor.getText().toString());
-        user.setTel(Integer.valueOf(etTel.getText().toString()));
-        user.setTentqq(Integer.valueOf(etTentqq.getText().toString()));
+        user.setTel(etTel.getText().toString());
+        user.setTentqq(etTentqq.getText().toString());
         user.setStarttime(String.valueOf(timeList.get(sppositon)));
         //用户头像url
         if (!imageUrl.equals("")){

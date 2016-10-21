@@ -13,8 +13,8 @@ public class _User implements Serializable{
     private String password;
     private Boolean mobilePhoneNumberVerified;
     private String mobilePhoneNumber;
-    private Integer tentqq;
-    private Integer tel;
+    private String tentqq;
+    private String tel;
     private String starttime;      //入学时间
     private String school;         //学校
     private String major;          //专业
@@ -75,19 +75,19 @@ public class _User implements Serializable{
         this.mobilePhoneNumber = mobilePhoneNumber;
     }
 
-    public Integer getTentqq() {
+    public String getTentqq() {
         return tentqq;
     }
 
-    public void setTentqq(Integer tentqq) {
+    public void setTentqq(String tentqq) {
         this.tentqq = tentqq;
     }
 
-    public Integer getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(Integer tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
