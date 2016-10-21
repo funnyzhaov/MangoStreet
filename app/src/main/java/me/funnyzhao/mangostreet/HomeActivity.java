@@ -127,6 +127,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        mDrawerLayout.closeDrawers();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
     }
