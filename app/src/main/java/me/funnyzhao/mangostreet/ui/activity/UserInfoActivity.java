@@ -173,14 +173,14 @@ public class UserInfoActivity extends BaseActivity implements IUserInfoView,View
             Glide.with(UserInfoActivity.this)
                     .load(MangoApplication.getUser().getImageurl())
                     .centerCrop()
-                    .error(R.mipmap.head_error_image)
+                    .error(R.mipmap.user_icon_error)
                     .into(xfvUserImage);
     }
 
 
     @Override
     public void onLoadDefaultImage() {
-        xfvUserImage.setImageResource(R.mipmap.usericon_default);
+        xfvUserImage.setImageResource(R.mipmap.user_icon);
     }
 
     @Override

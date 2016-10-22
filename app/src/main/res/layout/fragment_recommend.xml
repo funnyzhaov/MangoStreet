@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="16dp"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_ly"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rcv_recommend"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.melnykov.fab.FloatingActionButton
+        android:layout_margin="16dp"
+        android:layout_gravity="bottom|right"
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:src="@drawable/frag_create"
+        fab:fab_colorNormal="#4caf50"
+        fab:fab_colorPressed="@color/colorAccent"
+        fab:fab_colorRipple="#f5f5f5"
+        fab:fab_type="normal"
+        />
+</FrameLayout>

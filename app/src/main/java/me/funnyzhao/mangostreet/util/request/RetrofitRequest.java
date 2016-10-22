@@ -7,7 +7,9 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.orhanobut.logger.Logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.api.CollectApi;
@@ -24,6 +26,7 @@ import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
+import me.funnyzhao.mangostreet.presenter.INewstPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
 import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
 import me.funnyzhao.mangostreet.util.Interceptor.MangoInterceptors;
@@ -222,5 +225,37 @@ public  class RetrofitRequest {
                 Logger.e("请求失败",t);
             }
         });
+    }
+    /**
+     *获取最新发布的物品 6/
+     */
+    public static void getNewItems(final INewstPer iNewstPer){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<ItemResultBody> call=itemApi.getItemByuserName();
+        call.enqueue(new Callback<ItemResultBody>() {
+            @Override
+            public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
+                if (response.isSuccessful()){
+                    List<Item> itemList=new ArrayList<>();
+                    Item[] items=response.body().getResults();
+                    for (Item item:items){
+                        itemList.add(item);
+                    }
+                    iNewstPer.responseItems(itemList);
+                    Logger.d("获取数据成功");
+                }else {
+                    iNewstPer.showRequestInfo("无网络连接");
+                    Logger.d("获取数据失败");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemResultBody> call, Throwable t) {
+                iNewstPer.showRequestInfo("无网络连接");
+                Logger.e("请求失败",t);
+            }
+        });
+
     }
 }

@@ -6,15 +6,6 @@ package me.funnyzhao.mangostreet.view;
  */
 
 public interface IHomeView extends BaseView {
-    /**
-     * 初始化Toolbar
-     */
-    void initToolbar();
-
-    /**
-     *初始化侧滑布局
-     */
-    void initDrawerLayout();
 
     /**
      * 用户是否在线

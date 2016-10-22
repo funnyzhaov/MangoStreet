@@ -11,7 +11,7 @@ import retrofit2.http.GET;
 
 public interface ItemApi {
     /**
-     * 通过用户获取发布物品的集合
+     * 通过用户获取发布物品的集合 || 获取所有物品集合
      * @return
      */
     @GET("classes/Item")

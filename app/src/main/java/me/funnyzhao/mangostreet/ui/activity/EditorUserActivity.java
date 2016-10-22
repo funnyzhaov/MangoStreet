@@ -179,12 +179,12 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
 
         String url=MangoApplication.getUser().getImageurl();
         if (url==null ||url.equals("'")){
-            xfvUserImage.setImageResource(R.mipmap.head_loading_image);
+            xfvUserImage.setImageResource(R.mipmap.user_icon);
         }else {
             Glide.with(this)
                     .load(url)
                     .centerCrop()
-                    .error(R.mipmap.head_error_image)
+                    .error(R.mipmap.user_icon_error)
                     .into(xfvUserImage);
         }
         //初始化数据

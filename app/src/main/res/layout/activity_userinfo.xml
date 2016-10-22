@@ -16,7 +16,7 @@
         <ImageView
             android:id="@+id/lv_back"
             android:layout_gravity="center"
-            android:src="@drawable/page_back"
+            android:src="@drawable/arrow_left"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -70,8 +70,8 @@
             android:id="@+id/xfv_user"
             android:layout_width="78dp"
             android:layout_height="78dp"
-            android:src="@mipmap/usericon_default"
-            app:civ_border_width="2dp"
+            android:src="@mipmap/user_icon"
+            app:civ_border_width="1dp"
             app:civ_border_color="#ffffff"/>
         <LinearLayout
             android:layout_marginLeft="56dp"

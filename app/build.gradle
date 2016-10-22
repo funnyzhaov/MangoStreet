@@ -42,8 +42,11 @@ dependencies {
     //图片加载与缓存
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //兼容库组件
+    compile 'com.android.support:recyclerview-v7:23.2.0'
     compile 'com.android.support:support-v4:23.2.0'
     compile 'com.android.support:cardview-v7:23.2.0'
+    //floatingActionButton
+    compile 'com.melnykov:floatingactionbutton:1.3.0'
     //进度条
     compile 'com.mmga.metroloading:metroloading:1.0.0'
     //登录进度条
