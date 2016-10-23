@@ -49,6 +49,6 @@ public class RecommendModelImpl implements IRecommendModel {
             }
         }
         //将序排列
-        Collections.sort(mItemList, Collections.reverseOrder());
+        Collections.sort(mItemList);
     }
 }
