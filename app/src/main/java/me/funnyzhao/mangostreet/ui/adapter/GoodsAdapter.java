@@ -25,7 +25,8 @@ import me.funnyzhao.mangostreet.bean.Item;
 
 public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
     //物品List
-    private List<Item> mItemList=new ArrayList<>(6);
+    private List<Item> mItemList=new ArrayList<>();
+    //截取后
     private Context context;
     public GoodsAdapter(List<Item> data,Context context){
         mItemList = data;
@@ -42,6 +43,9 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvTitle.setText(mItemList.get(position).getItemName());
+        holder.tvAddress.setText(mItemList.get(position).getItemAddress());
+        holder.tvPrice.setText(mItemList.get(position).getPrice());
+        holder.tvDescription.setText(mItemList.get(position).getItemDescription());
         Glide.with(context)
                 .load(mItemList.get(position).getItemImage())
                 .centerCrop()
@@ -57,8 +61,19 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
     class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.iv_image)
         ImageView iv_image;
+
         @BindView(R.id.tv_title)
         TextView tvTitle;
+
+        @BindView(R.id.tv_description)
+        TextView tvDescription;
+
+        @BindView(R.id.tv_itemAddress)
+        TextView tvAddress;
+
+        @BindView(R.id.tv_price)
+        TextView tvPrice;
+
         public ViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);

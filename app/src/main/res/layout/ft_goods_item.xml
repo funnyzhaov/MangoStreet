@@ -3,26 +3,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="250dp"
     card_view:cardBackgroundColor="@android:color/white"
-    card_view:cardCornerRadius="10dp">
+    card_view:cardCornerRadius="5dp">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:layout_height="250dp"
         android:padding="1dp">
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="160dp"
             android:scaleType="centerCrop" />
         <TextView
-            android:layout_marginLeft="16dp"
             android:layout_below="@+id/iv_image"
             android:id="@+id/tv_title"
-            android:textColor="#757575"
-            android:text="HELLP"
+            android:textColor="#212121"
+            android:text="三星手机"
             android:textSize="16sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
+        <TextView
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/tv_title"
+            android:id="@+id/tv_description"
+            android:textColor="#BDBDBD"
+            android:text="马上要走了，现在低价....."
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_below="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:src="@mipmap/icon_address"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/imageView" />
+            <TextView
+                android:id="@+id/tv_itemAddress"
+                android:textColor="#757575"
+                android:text="校内"
+                android:layout_toRightOf="@+id/imageView"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginRight="16dp"
+                android:id="@+id/tv_price"
+                android:textColor="#FF9800"
+                android:text="999"
+                android:layout_alignParentRight="true"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

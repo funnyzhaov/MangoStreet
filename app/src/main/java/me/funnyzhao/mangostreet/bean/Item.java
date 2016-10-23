@@ -10,6 +10,7 @@ import java.util.Date;
 public class Item {
     private String categoryName;      //种类名称
     private Date createdAt;
+    private String price;             //价格
     private String itemAddress;       //交易地点
     private String itemDescription;   //物品描述
     private Boolean itemEffective;    //发布是否有效
@@ -19,6 +20,14 @@ public class Item {
     private String objectId;          //itemId
     private Date updatedAt;
     private String userObjectId;          //发布人(用户名)
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public String getCategoryName() {
         return categoryName;
@@ -113,6 +122,7 @@ public class Item {
         return "Item{" +
                 "categoryName='" + categoryName + '\'' +
                 ", createdAt=" + createdAt +
+                ", price='" + price + '\'' +
                 ", itemAddress='" + itemAddress + '\'' +
                 ", itemDescription='" + itemDescription + '\'' +
                 ", itemEffective=" + itemEffective +

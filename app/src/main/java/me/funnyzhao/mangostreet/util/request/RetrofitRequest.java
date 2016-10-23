@@ -240,6 +240,13 @@ public  class RetrofitRequest {
                     List<Item> itemList=new ArrayList<>();
                     Item[] items=response.body().getResults();
                     for (Item item:items){
+                        //判断物品描述信息的长度，进行处理
+                        if (item.getItemDescription()==null){
+                            item.setItemDescription("");
+                        }else if (item.getItemDescription().length()>10){
+                            item.setItemDescription(item.getItemDescription()
+                                    .substring(0,10)+"...");
+                        }
                         itemList.add(item);
                     }
                     iNewstPer.responseItems(itemList);
