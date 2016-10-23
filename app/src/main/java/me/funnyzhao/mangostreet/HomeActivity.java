@@ -180,7 +180,6 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                 //登录页面
                 Intent intent2 =new Intent(this, LoginActivity.class);
                 startActivity(intent2);
-                finish();
                 break;
             default:
                 break;

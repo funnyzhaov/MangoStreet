@@ -1,7 +1,6 @@
 package me.funnyzhao.mangostreet.ui.fragment;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,8 +33,6 @@ import me.funnyzhao.mangostreet.view.INewstView;
  */
 
 public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,INewstView{
-    //刷新完成
-    private static final int REFRESH_COMPLETE = 0X110;
 
     @BindView(R.id.swipe_ly)
     SwipeRefreshLayout mSwipeLayout;
@@ -46,21 +43,6 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private Unbinder unbinder;
     private GoodsAdapter mAdapter;
-
-    private Handler mHandler = new Handler()
-    {
-        public void handleMessage(android.os.Message msg)
-        {
-            switch (msg.what)
-            {
-                case REFRESH_COMPLETE:
-                    mAdapter.notifyDataSetChanged();
-                    mSwipeLayout.setRefreshing(false);
-                    break;
-
-            }
-        };
-    };
 
     /**----------------------
      * Presenter
@@ -95,7 +77,6 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
         }else {
             iNewstPer.showNoNetWork();
         }
-        mHandler.sendEmptyMessageDelayed(REFRESH_COMPLETE, 2000);
     }
 
     @Override
@@ -106,18 +87,18 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void setmSwipeLayout(){
         mSwipeLayout.setOnRefreshListener(this);
         mSwipeLayout.setColorSchemeResources(R.color.colorPrimary, R.color.colorPrimaryDark, R.color.colorAccent);
+        mSwipeLayout.post(new Runnable(){
+            @Override
+            public void run() {
+                mSwipeLayout.setRefreshing(true);
+            }
+        });
+        this.onRefresh();
     }
     private void setmRecyclerView(){
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false));
         mAdapter = new GoodsAdapter(itemList,getActivity());
         mRecyclerView.setAdapter(mAdapter);
-        //检查网络连接
-        if (NetWorkUtil.isNetConnect(getActivity())){
-            iNewstPer.loadItems();
-            //设置
-        }else {
-            iNewstPer.showNoNetWork();
-        }
     }
 
     private void initFloatButton(View root){
@@ -140,12 +121,10 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public void updateItems(List<Item> itemList) {
         for (Item item:itemList){
-            this.itemList.add(item);
+            this.itemList.add(0,item);
         }
-        mAdapter.notifyDataSetChanged();
+        mAdapter.notifyItemRangeInserted(0,itemList.size());
+        mRecyclerView.smoothScrollToPosition(0);
+        mSwipeLayout.setRefreshing(false);
     }
 }
-
-//----------------------------------------
-//    setRefreshing(boolean): 显示或隐藏刷新进度条
-//    isRefreshing(): 检查是否处于刷新状态

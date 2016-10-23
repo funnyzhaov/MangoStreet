@@ -12,11 +12,11 @@
         <ImageView
             android:id="@+id/ed_iv_back"
             android:layout_gravity="center"
-            android:src="@drawable/arrow_left"
+            android:src="@drawable/page_clear"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:contentDescription="返回按钮"
+            android:contentDescription="关闭按钮"
             />
         <TextView
             android:layout_width="0dp"
@@ -24,7 +24,7 @@
             android:layout_height="wrap_content" />
         <ImageView
             android:layout_gravity="center"
-            android:src="@drawable/page_done"
+            android:src="@drawable/page_done_ok"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

@@ -23,10 +23,12 @@ import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import me.funnyzhao.mangostreet.bean.success.SuccessBody;
 import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
+import me.funnyzhao.mangostreet.model.IRecommendModel;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
+import me.funnyzhao.mangostreet.presenter.IRecommendPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
 import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
 import me.funnyzhao.mangostreet.util.Interceptor.MangoInterceptors;
@@ -189,7 +191,7 @@ public  class RetrofitRequest {
                         public void run() {
                             iUserInfoPer.getNetDataSuccess();
                         }
-                    },2000);
+                    },1047);
                 }
             }
 
@@ -227,7 +229,7 @@ public  class RetrofitRequest {
         });
     }
     /**
-     *获取最新发布的物品 6/
+     *获取最新发布的物品
      */
     public static void getNewItems(final INewstPer iNewstPer){
         init();
@@ -260,6 +262,45 @@ public  class RetrofitRequest {
             @Override
             public void onFailure(Call<ItemResultBody> call, Throwable t) {
                 iNewstPer.showRequestInfo("无网络连接");
+                Logger.e("请求失败",t);
+            }
+        });
+
+    }
+    /**
+     *获取推荐物品
+     */
+    public static void getRecommendItems(final IRecommendModel iRecommendModel,final IRecommendPer iRecommendPer){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<ItemResultBody> call=itemApi.getItemByuserName();
+        call.enqueue(new Callback<ItemResultBody>() {
+            @Override
+            public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
+                if (response.isSuccessful()){
+                    List<Item> itemList=new ArrayList<>();
+                    Item[] items=response.body().getResults();
+                    for (Item item:items){
+                        //判断物品描述信息的长度，进行处理
+                        if (item.getItemDescription()==null){
+                            item.setItemDescription("");
+                        }else if (item.getItemDescription().length()>10){
+                            item.setItemDescription(item.getItemDescription()
+                                    .substring(0,10)+"...");
+                        }
+                        itemList.add(item);
+                    }
+                    iRecommendModel.responseItems(itemList);
+                    Logger.d("获取数据成功");
+                }else {
+                    iRecommendPer.showRequestInfo("无网络连接");
+                    Logger.d("获取数据失败");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemResultBody> call, Throwable t) {
+                iRecommendPer.showRequestInfo("无网络连接");
                 Logger.e("请求失败",t);
             }
         });

@@ -7,7 +7,7 @@ import java.util.Date;
  * 物品信息实体
  */
 
-public class Item {
+public class Item implements Comparable<Item>{
     private String categoryName;      //种类名称
     private Date createdAt;
     private String price;             //价格
@@ -19,7 +19,16 @@ public class Item {
     private String itemSchool;        //物品所属学校（交易地点所在学校）
     private String objectId;          //itemId
     private Date updatedAt;
+    private String collectNum;        //被收藏数
     private String userObjectId;          //发布人(用户名)
+
+    public String getCollectNum() {
+        return collectNum;
+    }
+
+    public void setCollectNum(String collectNum) {
+        this.collectNum = collectNum;
+    }
 
     public String getPrice() {
         return price;
@@ -131,7 +140,15 @@ public class Item {
                 ", itemSchool='" + itemSchool + '\'' +
                 ", objectId='" + objectId + '\'' +
                 ", updatedAt=" + updatedAt +
+                ", collectNum='" + collectNum + '\'' +
                 ", userObjectId='" + userObjectId + '\'' +
                 '}';
     }
+
+
+    @Override
+    public int compareTo(Item another) {
+        return Integer.valueOf(this.collectNum)-Integer.valueOf(another.collectNum);
+    }
+
 }
