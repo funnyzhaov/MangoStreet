@@ -239,7 +239,7 @@ public  class RetrofitRequest {
             @Override
             public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
                 if (response.isSuccessful()){
-                    List<Item> itemList=new ArrayList<>();
+                    List<Item> itemList=new ArrayList<>(100);
                     Item[] items=response.body().getResults();
                     for (Item item:items){
                         //判断物品描述信息的长度，进行处理

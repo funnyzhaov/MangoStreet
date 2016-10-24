@@ -52,7 +52,7 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
     /**----------------------
      * RecyclerView数据
      *-----------------------*/
-    private List<Item> itemList=new ArrayList<>();
+    private static List<Item> itemList=new ArrayList<>();
 
     @Nullable
     @Override
@@ -119,16 +119,37 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
         Toast.makeText(getActivity(),msg,Toast.LENGTH_SHORT).show();
     }
 
+    /*
+     *下拉刷新逻辑：
+     * 判断缓存的list1中是否包含list2中的元素，如果都包含，那么表示服务器无最新数据
+     * 如果有一个不包含，表示服务器有了数据的改变或者有了新数据，则更新当前list1.
+     * __created by funnyzhao.
+     */
     @Override
-    public void updateItems(List<Item> itemList) {
-            this.itemList.clear();
+    public void updateItems(List<Item> itemLists) {
+        int count=0;
+        for (Item item:itemLists){
+            if (itemList.contains(item)){
+                count++;
+                continue;
+            }else {
+                count++;
+                break;
+            }
+        }
+        if (count==itemList.size()){
+            mSwipeLayout.setRefreshing(false);
+            showMsg("已经是最新了");
+        }else {
+            itemList.clear();
             mAdapter.notifyDataSetChanged();
-            for (int i=itemList.size()-1;i>0;i--){
-                this.itemList.add(0,itemList.get(i));
+            for (int i=itemLists.size()-1;i>=0;i--){
+                itemList.add(0,itemLists.get(i));
             }
             mAdapter.notifyItemRangeInserted(0,itemList.size());
             mRecyclerView.smoothScrollToPosition(0);
             mSwipeLayout.setRefreshing(false);
+        }
 
     }
 }

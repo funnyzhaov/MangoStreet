@@ -89,15 +89,30 @@ public class RecommendFragment extends Fragment implements SwipeRefreshLayout.On
     }
 
     @Override
-    public void updateItems(List<Item> itemList) {
+    public void updateItems(List<Item> itemLists) {
+        int count=0;
+        for (Item item:itemLists){
+            if (itemList.contains(item)){
+                count++;
+                continue;
+            }else {
+                count++;
+                break;
+            }
+        }
+        if (count==itemList.size()){
+            mSwipeLayout.setRefreshing(false);
+            showMsg("已经是最新了");
+        }else {
             this.itemList.clear();
             mAdapter.notifyDataSetChanged();
-            for (Item item:itemList){
+            for (Item item:itemLists){
                 this.itemList.add(0,item);
             }
             mAdapter.notifyItemRangeInserted(0,itemList.size());
             mRecyclerView.smoothScrollToPosition(0);
             mSwipeLayout.setRefreshing(false);
+        }
     }
     /**
      * 设置刷新组件
