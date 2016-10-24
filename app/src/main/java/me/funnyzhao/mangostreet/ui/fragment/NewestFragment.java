@@ -123,8 +123,8 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
     public void updateItems(List<Item> itemList) {
             this.itemList.clear();
             mAdapter.notifyDataSetChanged();
-            for (Item item:itemList){
-                this.itemList.add(0,item);
+            for (int i=itemList.size()-1;i>0;i--){
+                this.itemList.add(0,itemList.get(i));
             }
             mAdapter.notifyItemRangeInserted(0,itemList.size());
             mRecyclerView.smoothScrollToPosition(0);

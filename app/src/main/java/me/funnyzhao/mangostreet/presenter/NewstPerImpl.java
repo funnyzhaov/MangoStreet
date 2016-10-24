@@ -1,6 +1,11 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.model.INewstModel;
@@ -38,6 +43,18 @@ public class NewstPerImpl implements INewstPer {
 
     @Override
     public void responseItems(List<Item> itemList) {
-        iNewstView.updateItems(itemList);
+        iNewstView.updateItems(sortByTime(itemList));
+    }
+
+    private List<Item> sortByTime(List<Item> itemsList){
+        List<Item> retStr=new ArrayList<Item>();
+        Map<Long,Item> map = new TreeMap<Long,Item>();
+        for(int i=0;i<itemsList.size();i++){
+            map.put((itemsList.get(i).getCreatedAt().getTime()),itemsList.get(i));
+        }
+        Collection<Item> coll=map.values();
+        retStr.addAll(coll);
+        Collections.reverse(retStr);
+        return retStr;
     }
 }
