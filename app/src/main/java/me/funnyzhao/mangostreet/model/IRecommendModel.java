@@ -21,6 +21,7 @@ public interface IRecommendModel {
     /***
      * 响应数据
      * @param itemList
+     * @param iRecommendPer
      */
-    void responseItems(List<Item> itemList);
+    void responseItems(List<Item> itemList, IRecommendPer iRecommendPer);
 }

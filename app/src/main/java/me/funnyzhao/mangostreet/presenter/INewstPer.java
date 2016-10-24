@@ -19,4 +19,5 @@ public interface INewstPer extends BasePer {
      * @param itemList
      */
     void responseItems(List<Item> itemList);
+
 }

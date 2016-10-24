@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,6 +89,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     private NewestFragment newestFragment;
     private RecommendFragment recommendFragment;
 
+    private long exitTime = 0;
+    private static int exitTag;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,17 +100,31 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     }
     @Override
     protected void onRestart() {
-        super.onRestart();
+        if (exitTag==1){
+            showHintWidget();
+            ivUserImage.setClickable(false);
+            ivUserImage.setImageResource(R.mipmap.user_icon);
+            super.onRestart();
+        }else {
+            super.onRestart();
+        }
     }
 
     @Override
     protected void onStart() {
-        super.onStart();
-        //更新数据
-        if (isOnline()){
-            showUserWidget();
-        }else{
+        if (exitTag==1){
             showHintWidget();
+            ivUserImage.setClickable(false);
+            ivUserImage.setImageResource(R.mipmap.user_icon);
+            super.onRestart();
+        }else {
+            super.onStart();
+            //更新数据
+            if (isOnline()){
+                showUserWidget();
+            }else{
+                showHintWidget();
+            }
         }
 
     }
@@ -148,6 +165,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         tvIdentification.setVisibility(View.VISIBLE);
         tvToLogin.setVisibility(View.GONE);
         ivUserImage.setOnClickListener(this);
+        navigationView.getMenu().getItem(2).setVisible(true);
+        navigationView.getMenu().getItem(2).setCheckable(true);
         checkUserShow();
     }
 
@@ -156,6 +175,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         tvUserName.setVisibility(View.GONE);
         tvIdentification.setVisibility(View.GONE);
         tvToLogin.setVisibility(View.VISIBLE);
+        navigationView.getMenu().getItem(2).setVisible(false);
+        navigationView.getMenu().getItem(2).setCheckable(false);
     }
 
     @Override
@@ -261,15 +282,16 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     //选择某一项
     public void  selectDrawerItem(MenuItem menuItem){
         switch (menuItem.getItemId()) {
-
-            // ...
+            case R.id.menuitem_out:
+                showHintWidget();
+                ivUserImage.setClickable(false);
+                ivUserImage.setImageResource(R.mipmap.user_icon);
+                exitTag=1;
+                menuItem.setChecked(true);
+                break;
             default:
-                Toast.makeText(HomeActivity.this,"menu click",Toast.LENGTH_SHORT).show();
                 break;
         }
-//        menuItem.setChecked(true);
-        mDrawerLayout.closeDrawers();
-
     }
 
 
@@ -304,6 +326,20 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
             }
             tvUserName.setText(MangoApplication.getUser().getUsername());
         }
+    }
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

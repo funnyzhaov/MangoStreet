@@ -14,6 +14,7 @@ import me.funnyzhao.mangostreet.view.INewstView;
 public class NewstPerImpl implements INewstPer {
     private INewstModel iNewstModel;
     private INewstView iNewstView;
+
     public NewstPerImpl(INewstView iNewstView){
         this.iNewstView=iNewstView;
         iNewstModel=new NewstModelImpl();

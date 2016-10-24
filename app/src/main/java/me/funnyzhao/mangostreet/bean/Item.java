@@ -150,5 +150,17 @@ public class Item implements Comparable<Item>{
     public int compareTo(Item another) {
         return Integer.valueOf(this.collectNum)-Integer.valueOf(another.collectNum);
     }
-
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Item){
+            Item st=(Item) obj;
+            return (objectId.equals(st.getObjectId()));
+        }else{
+            return super.equals(obj);
+        }
+    }
+    @Override
+    public int hashCode() {
+        return objectId.hashCode();
+    }
 }

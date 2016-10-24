@@ -118,6 +118,7 @@ public class EditorUserActivity extends BaseActivity implements IEditorUserView,
         switch (v.getId()){
             case R.id.ed_iv_back:
                 //返回
+                finish();
                 break;
             case R.id.ed_iv_done:
                 //完成

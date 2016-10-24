@@ -290,7 +290,7 @@ public  class RetrofitRequest {
                         }
                         itemList.add(item);
                     }
-                    iRecommendModel.responseItems(itemList);
+                    iRecommendModel.responseItems(itemList,iRecommendPer);
                     Logger.d("获取数据成功");
                 }else {
                     iRecommendPer.showRequestInfo("无网络连接");

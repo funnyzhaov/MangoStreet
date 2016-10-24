@@ -12,11 +12,15 @@ import me.funnyzhao.mangostreet.view.IRecommendView;
  */
 
 public class RecommendPerImpl implements IRecommendPer {
+
     private IRecommendView iRecommendView;
     private IRecommendModel iRecommendModel;
+//    private static List<Item> oldItems;
+
     public RecommendPerImpl(IRecommendView iRecommendView){
+
         this.iRecommendView=iRecommendView;
-        iRecommendModel=new RecommendModelImpl(this);
+        iRecommendModel=new RecommendModelImpl();
     }
     @Override
     public void loadItems() {
@@ -25,7 +29,7 @@ public class RecommendPerImpl implements IRecommendPer {
 
     @Override
     public void responseItems(List<Item> itemList) {
-        iRecommendView.updateItems(itemList);
+            iRecommendView.updateItems(itemList);
     }
 
     @Override
@@ -37,4 +41,5 @@ public class RecommendPerImpl implements IRecommendPer {
     public void showRequestInfo(String info) {
         iRecommendView.showMsg(info);
     }
+
 }

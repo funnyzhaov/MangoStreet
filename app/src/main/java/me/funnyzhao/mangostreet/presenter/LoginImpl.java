@@ -67,6 +67,7 @@ public class LoginImpl extends ControlUser implements ILoginPer {
             intent.putExtra("username",hashMap.get("username"));
             intent.putExtra("objectId",hashMap.get("objectId"));
             intent.putExtra("onlineuser",user);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             mContext.startActivity(intent);
             mContext.finish();
         }

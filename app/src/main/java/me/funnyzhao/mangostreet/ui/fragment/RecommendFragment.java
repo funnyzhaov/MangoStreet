@@ -90,12 +90,14 @@ public class RecommendFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void updateItems(List<Item> itemList) {
-        for (Item item:itemList){
-            this.itemList.add(0,item);
-        }
-        mAdapter.notifyItemRangeInserted(0,itemList.size());
-        mRecyclerView.smoothScrollToPosition(0);
-        mSwipeLayout.setRefreshing(false);
+            this.itemList.clear();
+            mAdapter.notifyDataSetChanged();
+            for (Item item:itemList){
+                this.itemList.add(0,item);
+            }
+            mAdapter.notifyItemRangeInserted(0,itemList.size());
+            mRecyclerView.smoothScrollToPosition(0);
+            mSwipeLayout.setRefreshing(false);
     }
     /**
      * 设置刷新组件

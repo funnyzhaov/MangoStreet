@@ -72,6 +72,7 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
      */
     @Override
     public void onRefresh() {
+
         if (NetWorkUtil.isNetConnect(getActivity())){
             iNewstPer.loadItems();
         }else {
@@ -120,11 +121,14 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public void updateItems(List<Item> itemList) {
-        for (Item item:itemList){
-            this.itemList.add(0,item);
-        }
-        mAdapter.notifyItemRangeInserted(0,itemList.size());
-        mRecyclerView.smoothScrollToPosition(0);
-        mSwipeLayout.setRefreshing(false);
+            this.itemList.clear();
+            mAdapter.notifyDataSetChanged();
+            for (Item item:itemList){
+                this.itemList.add(0,item);
+            }
+            mAdapter.notifyItemRangeInserted(0,itemList.size());
+            mRecyclerView.smoothScrollToPosition(0);
+            mSwipeLayout.setRefreshing(false);
+
     }
 }

@@ -13,18 +13,14 @@ import me.funnyzhao.mangostreet.util.request.RetrofitRequest;
  */
 
 public class RecommendModelImpl implements IRecommendModel {
-    private IRecommendPer iRecommendPer;
-    private List<Item> mItemList=new ArrayList<>();
-    public RecommendModelImpl(IRecommendPer iRecommendPer){
-        this.iRecommendPer=iRecommendPer;
-    }
+    private static List<Item> mItemList=new ArrayList<>();
     @Override
     public void loadItems(IRecommendModel iRecommendModel,IRecommendPer iRecommendPer) {
         RetrofitRequest.getRecommendItems(iRecommendModel,iRecommendPer);
     }
 
     @Override
-    public void responseItems(List<Item> itemList) {
+    public void responseItems(List<Item> itemList,IRecommendPer iRecommendPer) {
         sortByCollectnum(itemList);
         iRecommendPer.responseItems(mItemList);
     }
@@ -34,18 +30,11 @@ public class RecommendModelImpl implements IRecommendModel {
      * @param items
      */
     private void sortByCollectnum(List<Item> items){
-        int i=0;
+        mItemList.clear();
         //先取出收藏数>2的
         for (int j=0;j<items.size();j++) {
-            if (i<=j){
-                if (i<6){
-                    if (Integer.valueOf(items.get(j).getCollectNum())>=2){
-                        mItemList.add(items.get(j));
-                        i++;
-                    }
-                }else {
-                    break;
-                }
+            if (Integer.valueOf(items.get(j).getCollectNum())>=2){
+                mItemList.add(items.get(j));
             }
         }
         //将序排列
