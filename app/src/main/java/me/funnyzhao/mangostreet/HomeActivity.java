@@ -165,8 +165,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         tvIdentification.setVisibility(View.VISIBLE);
         tvToLogin.setVisibility(View.GONE);
         ivUserImage.setOnClickListener(this);
-        navigationView.getMenu().getItem(2).setVisible(true);
-        navigationView.getMenu().getItem(2).setCheckable(true);
+        navigationView.getMenu().findItem(R.id.menuitem_out).setVisible(true);
+        navigationView.getMenu().findItem(R.id.menuitem_out).setCheckable(true);
         checkUserShow();
     }
 
@@ -175,8 +175,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         tvUserName.setVisibility(View.GONE);
         tvIdentification.setVisibility(View.GONE);
         tvToLogin.setVisibility(View.VISIBLE);
-        navigationView.getMenu().getItem(2).setVisible(false);
-        navigationView.getMenu().getItem(2).setCheckable(false);
+        navigationView.getMenu().findItem(R.id.menuitem_out).setVisible(false);
+        navigationView.getMenu().findItem(R.id.menuitem_out).setCheckable(false);
     }
 
     @Override
@@ -287,13 +287,53 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                 ivUserImage.setClickable(false);
                 ivUserImage.setImageResource(R.mipmap.user_icon);
                 exitTag=1;
-                menuItem.setChecked(true);
+            case R.id.menuitem_released:
+                checkLoginReleased();
+                break;
+            case R.id.menuitem_collects:
+                checkLoginCollect();
+                break;
+            case R.id.menuitem_category:
+                showResponseMsg("分类");
+                break;
+            case R.id.menuitem_update:
+                showResponseMsg("升级");
+                break;
+            case R.id.menuitem_about:
+                showResponseMsg("关于");
                 break;
             default:
                 break;
         }
     }
-
+    /**
+     *  检查用户是否未登录  发布
+     */
+    private void  checkLoginReleased(){
+        //下线
+        if (exitTag==1){
+            showResponseMsg("你还木有登录!");
+        }else if (username==null && objectId==null){
+            showResponseMsg("你还木有登录!");
+        }else {
+            //以上都不是，就加载个人发布页面
+            //...
+        }
+    }
+    /**
+     *  检查用户是否未登录  收藏
+     */
+    private void  checkLoginCollect(){
+        //下线
+        if (exitTag==1){
+            showResponseMsg("你还木有登录!");
+        }else if (username==null && objectId==null){
+            showResponseMsg("你还木有登录!");
+        }else {
+            //以上都不是，就加载个人收藏页面
+            //...
+        }
+    }
 
 
     /**

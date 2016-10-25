@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/first_group"
+        android:checkableBehavior="single">
         <item
-            android:id="@+id/menuitem_update"
+            android:id="@+id/menuitem_category"
             android:checkable="true"
-            android:title="版本升级"
-            android:icon="@mipmap/menu_hv_update"/>
+            android:title="个性分类"
+            android:icon="@mipmap/menu_category"/>
         <item
-            android:id="@+id/menuitem_about"
+            android:id="@+id/menuitem_released"
             android:checkable="true"
-            android:title="关于作者"
-            android:icon="@mipmap/menu_hv_about"/>
+            android:title="我的发布"
+            android:icon="@mipmap/menu_resealed"/>
         <item
-            android:id="@+id/menuitem_out"
+            android:id="@+id/menuitem_collects"
             android:checkable="true"
-            android:title="退出登录"
-            android:icon="@mipmap/exit_to_app"/>
+            android:title="我的收藏"
+            android:icon="@mipmap/menu_collect"/>
+    </group>
+    <group android:id="@+id/second_group">
+            <item
+                android:id="@+id/menuitem_update"
+                android:checkable="true"
+                android:title="版本升级"
+                android:icon="@mipmap/menu_hv_update"/>
+            <item
+                android:id="@+id/menuitem_about"
+                android:checkable="true"
+                android:title="关于作者"
+                android:icon="@mipmap/menu_hv_about"/>
+            <item
+                android:id="@+id/menuitem_out"
+                android:checkable="true"
+                android:title="退出登录"
+                android:icon="@mipmap/exit_to_app"/>
     </group>
 </menu>
