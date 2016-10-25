@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,12 +8,13 @@ import java.util.Date;
  * 物品信息实体
  */
 
-public class Item implements Comparable<Item>{
+public class Item implements Comparable<Item>,Serializable{
     private String categoryName;      //种类名称
     private Date createdAt;
     private String price;             //价格
     private String itemAddress;       //交易地点
     private String itemDescription;   //物品描述
+    private String itemSubDescription;   //物品描述短
     private Boolean itemEffective;    //发布是否有效
     private String itemImage;         //物品图片URL
     private String itemName;          //物品名称
@@ -21,6 +23,14 @@ public class Item implements Comparable<Item>{
     private Date updatedAt;
     private String collectNum;        //被收藏数
     private String userObjectId;          //发布人(用户名)
+
+    public String getItemSubDescription() {
+        return itemSubDescription;
+    }
+
+    public void setItemSubDescription(String itemSubDescription) {
+        this.itemSubDescription = itemSubDescription;
+    }
 
     public String getCollectNum() {
         return collectNum;

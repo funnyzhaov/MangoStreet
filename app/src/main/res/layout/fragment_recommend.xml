@@ -23,6 +23,8 @@
         android:layout_height="56dp"
         android:src="@drawable/frag_create"
         fab:fab_colorNormal="#FFC107"
+        fab:elevation="6dp"
+        fab:pressedTranslationZ="12dp"
         fab:fab_colorPressed="#FF9800"
         fab:fab_colorRipple="#f5f5f5"
         fab:fab_type="normal"

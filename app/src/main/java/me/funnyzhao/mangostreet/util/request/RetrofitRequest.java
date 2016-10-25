@@ -31,6 +31,7 @@ import me.funnyzhao.mangostreet.presenter.INewstPer;
 import me.funnyzhao.mangostreet.presenter.IRecommendPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
 import me.funnyzhao.mangostreet.presenter.IUserInfoPer;
+import me.funnyzhao.mangostreet.presenter.disposeitem.IItemDetailsPer;
 import me.funnyzhao.mangostreet.util.Interceptor.MangoInterceptors;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -245,14 +246,10 @@ public  class RetrofitRequest {
                         //判断物品描述信息的长度，进行处理
                         if (item.getItemDescription()==null){
                             item.setItemDescription("");
-                        }else if (item.getItemDescription().length()>10){
-                            item.setItemDescription(item.getItemDescription()
-                                    .substring(0,10)+"...");
                         }
                         itemList.add(item);
                     }
                     iNewstPer.responseItems(itemList);
-                    Logger.d("获取数据成功");
                 }else {
                     iNewstPer.showRequestInfo("无网络连接");
                     Logger.d("获取数据失败");
@@ -305,5 +302,25 @@ public  class RetrofitRequest {
             }
         });
 
+    }
+    public static void getUserInfoById(String objectId, final IItemDetailsPer detailsPer){
+        init();
+        UserApi api=retrofit.create(UserApi.class);
+        Call<_User> call=api.getUserById(objectId);
+        call.enqueue(new Callback<_User>() {
+            @Override
+            public void onResponse(Call<_User> call, Response<_User> response) {
+                if (response.isSuccessful()){
+                    detailsPer.loadSuccess(response.body());
+                }else {
+                    detailsPer.loadFailure();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<_User> call, Throwable t) {
+                detailsPer.loadFailure();
+            }
+        });
     }
 }

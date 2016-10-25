@@ -23,11 +23,13 @@ import me.funnyzhao.mangostreet.bean.Item;
  * 物品RecyclerView Adapter
  */
 
-public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
+public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>implements View.OnClickListener{
     //物品List
     private List<Item> mItemList=new ArrayList<>();
-    //截取后
     private Context context;
+
+    private OnRecyclerViewItemClickListener mOnItemClickListener = null;
+
     public GoodsAdapter(List<Item> data,Context context){
         mItemList = data;
         this.context=context;
@@ -37,6 +39,7 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
         //加载布局文件
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.ft_goods_item,parent,false);
         ViewHolder vh = new ViewHolder(v);
+        v.setOnClickListener(this);
         return vh;
     }
 
@@ -45,7 +48,9 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
         holder.tvTitle.setText(mItemList.get(position).getItemName());
         holder.tvAddress.setText(mItemList.get(position).getItemAddress());
         holder.tvPrice.setText(mItemList.get(position).getPrice());
-        holder.tvDescription.setText(mItemList.get(position).getItemDescription());
+        holder.tvDescription.setText(mItemList.get(position).getItemSubDescription());
+        //设置tag
+        holder.itemView.setTag(position);
         Glide.with(context)
                 .load(mItemList.get(position).getItemImage())
                 .centerCrop()
@@ -58,6 +63,15 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
     public int getItemCount() {
         return mItemList.size();
     }
+
+    @Override
+    public void onClick(View v) {
+        if (mOnItemClickListener != null) {
+            //getTag获取的即是点击位置
+            mOnItemClickListener.onItemClick(v,(int)v.getTag());
+        }
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.iv_image)
         ImageView iv_image;
@@ -78,5 +92,25 @@ public class GoodsAdapter extends RecyclerView.Adapter<GoodsAdapter.ViewHolder>{
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    /**
+     * 内部点击接口
+     */
+    public static interface OnRecyclerViewItemClickListener {
+        /**
+         * item点击
+         * @param view
+         * @param position  当前位置
+         */
+        void onItemClick(View view ,int position);
+    }
+
+    /**
+     * 设置点击事件
+     * @param listener
+     */
+    public void setOnItemClickListener(OnRecyclerViewItemClickListener listener) {
+        this.mOnItemClickListener = listener;
     }
 }

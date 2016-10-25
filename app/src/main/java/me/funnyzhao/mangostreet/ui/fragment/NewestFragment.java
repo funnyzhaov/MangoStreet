@@ -100,6 +100,17 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false));
         mAdapter = new GoodsAdapter(itemList,getActivity());
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new GoodsAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //根据位置获取数据,，进入物品详情页
+                if (NetWorkUtil.isNetConnect(getActivity())){
+                    iNewstPer.toShowDetailsPage(getActivity(),itemList.get(position));
+                }else {
+                    iNewstPer.showNoNetWork();
+                }
+            }
+        });
     }
 
     private void initFloatButton(View root){

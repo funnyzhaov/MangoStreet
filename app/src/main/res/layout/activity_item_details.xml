@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+            <ImageView
+                android:id="@+id/item_iv_back"
+                android:layout_gravity="center"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/arrow_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="关闭按钮"
+                />
+            <TextView
+                android:text="物品名称"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/item_tv_title"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    <ScrollView android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <FrameLayout
+            xmlns:fab="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:padding="2dp"
+            android:layout_height="240dp">
+            <ImageView
+                android:id="@+id/item_iv_itemImage"
+                android:src="@mipmap/user_icon_error"
+                android:layout_width="match_parent"
+                android:padding="2dp"
+                android:layout_height="200dp" />
+            <com.melnykov.fab.FloatingActionButton
+                android:layout_gravity="bottom|right"
+                android:id="@+id/item_like"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginBottom="16dp"
+                android:layout_marginRight="16dp"
+                android:src="@drawable/item_icon_like"
+                fab:fab_colorNormal="#FFC107"
+                fab:fab_colorPressed="#FF9800"
+                fab:fab_colorRipple="#f5f5f5"
+                fab:fab_type="normal"
+                />
+        </FrameLayout>
+        <TextView
+            android:id="@+id/item_tv_price"
+            android:text="999"
+            android:layout_marginLeft="16dp"
+            android:textSize="24sp"
+            android:textColor="#FF9800"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <RelativeLayout
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_details"
+                android:src="@mipmap/item_icon_details"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/itme_tv_description"
+                android:layout_toRightOf="@+id/iv_details"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:textSize="18sp"
+                android:textColor="#757575"
+                android:text="物品的详细描述"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_address"
+                android:src="@mipmap/item_icon_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/itme_tv_address"
+                android:textSize="18sp"
+                android:text="校内"
+                android:textColor="#757575"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <ImageView
+            android:background="@mipmap/userinfo_line"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <de.hdodenhof.circleimageview.CircleImageView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_gravity="center"
+                android:id="@+id/item_xfv_user"
+                android:layout_width="78dp"
+                android:layout_height="78dp"
+                android:src="@mipmap/user_icon"
+                app:civ_border_width="1dp"
+                app:civ_border_color="#ffffff"/>
+            <TextView
+                android:id="@+id/item_tv_username"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_toRightOf="@+id/item_xfv_user"
+                android:textColor="#757575"
+                android:text="funnyzhao"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/item_tv_department"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/item_xfv_user"
+                android:layout_below="@+id/item_tv_username"
+                android:textColor="#BDBDBD"
+                android:text="软件动漫学院"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_tel"
+                android:src="@mipmap/item_icon_tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center"
+                android:id="@+id/item_tv_tel"
+                android:text="122112111"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/iv_qq"
+                android:src="@mipmap/item_icon_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_marginLeft="16dp"
+                android:layout_gravity="center"
+                android:id="@+id/item_tv_qq"
+                android:text="122112111"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

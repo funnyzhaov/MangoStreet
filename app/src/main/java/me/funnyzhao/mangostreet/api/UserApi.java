@@ -54,6 +54,13 @@ public interface UserApi {
     Call<UpdateUserBody> updateUserInfo(@Header("X-Bmob-Session-Token") String SessionToken,
                                         @Path("objectId") String objectId, @Body _User user);
 
+    /**
+     * 根据用户Id查询信息
+     * @param objectId
+     * @return
+     */
+    @GET("users/{objectId}")
+    Call<_User> getUserById(@Path("objectId") String objectId);
 
     /**
      * 上传用户头像
