@@ -1,9 +1,8 @@
 package me.funnyzhao.mangostreet.presenter;
 
-import android.content.Context;
-
 import java.util.List;
 
+import me.funnyzhao.mangostreet.HomeActivity;
 import me.funnyzhao.mangostreet.bean.Item;
 
 /**
@@ -27,6 +26,6 @@ public interface INewstPer extends BasePer {
      * @param context
      * @param item
      */
-    void toShowDetailsPage(Context context,Item item);
+    void toShowDetailsPage(HomeActivity context, Item item);
 
 }

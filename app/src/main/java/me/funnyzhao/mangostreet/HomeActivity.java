@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
     private RecommendFragment recommendFragment;
 
     private long exitTime = 0;
-    private static int exitTag;
+    public static int exitTag;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,6 +155,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
             hashMap=new HashMap<>();
             hashMap.put("imageurl",mUser.getImageurl());
             hashMap.put("identification",mUser.getIdentification());
+            exitTag=2;
             return true;
         }
         return false;

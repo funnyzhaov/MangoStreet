@@ -1,6 +1,5 @@
 package me.funnyzhao.mangostreet.presenter;
 
-import android.content.Context;
 import android.content.Intent;
 
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import me.funnyzhao.mangostreet.HomeActivity;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.model.INewstModel;
 import me.funnyzhao.mangostreet.model.NewstModelImpl;
@@ -52,9 +52,11 @@ public class NewstPerImpl implements INewstPer {
     }
 
     @Override
-    public void toShowDetailsPage(Context context, Item item) {
+    public void toShowDetailsPage(HomeActivity context, Item item) {
+
         Intent intent=new Intent(context, ItemDetailsActivity.class);
         intent.putExtra("item",item);
+        intent.putExtra("tag",context.exitTag);
         context.startActivity(intent);
     }
     private List<Item> sortByTime(List<Item> itemsList){

@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.funnyzhao.mangostreet.HomeActivity;
 import me.funnyzhao.mangostreet.R;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
@@ -105,7 +106,7 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
             public void onItemClick(View view, int position) {
                 //根据位置获取数据,，进入物品详情页
                 if (NetWorkUtil.isNetConnect(getActivity())){
-                    iNewstPer.toShowDetailsPage(getActivity(),itemList.get(position));
+                    iNewstPer.toShowDetailsPage((HomeActivity) getActivity(),itemList.get(position));
                 }else {
                     iNewstPer.showNoNetWork();
                 }

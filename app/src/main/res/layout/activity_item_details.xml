@@ -33,12 +33,12 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         <FrameLayout
             xmlns:fab="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:padding="2dp"
-            android:layout_height="240dp">
+            android:layout_height="260dp">
             <ImageView
                 android:id="@+id/item_iv_itemImage"
                 android:src="@mipmap/user_icon_error"

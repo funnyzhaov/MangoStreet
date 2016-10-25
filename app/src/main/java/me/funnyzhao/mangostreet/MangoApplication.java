@@ -24,8 +24,7 @@ public class MangoApplication extends Application{
      *  在应用运行期间，如果用户发布物品或者收藏了物品信息，则更新这个map :add
      *               如果用户取消了收藏或者删除了发布信息，则更新这个map:reduce
      */
-    private static HashMap<String,Integer> hashMap=new HashMap<>(100);
-
+    private static HashMap<String,Integer> hashMap=new HashMap<>();
     @Override
     public void onCreate() {
         Bmob.initialize(this, "9b00125d964e776ec5b4c79c06dd6c05");
@@ -51,7 +50,7 @@ public class MangoApplication extends Application{
      * 增加发布数
      */
     public static void mapReseledAdd(){
-        int oldCount=hashMap.remove("releasedCount");
+        int oldCount=hashMap.get("releasedCount");
         hashMap.put("releasedCount",++oldCount);
     }
 
@@ -61,7 +60,7 @@ public class MangoApplication extends Application{
      */
     public static void mapReseledReduce(int count){
         int newCount;
-        int oldCount=hashMap.remove("releasedCount");
+        int oldCount=hashMap.get("releasedCount");
         newCount=oldCount-count;
         hashMap.put("releasedCount",newCount);
     }
@@ -69,7 +68,7 @@ public class MangoApplication extends Application{
      * 增加收藏数
      */
     public static void mapCollectAdd(){
-        int oldCount=hashMap.remove("collectCount");
+        int oldCount=hashMap.get("collectCount");
         hashMap.put("collectCount",++oldCount);
     }
 
@@ -78,7 +77,7 @@ public class MangoApplication extends Application{
      */
     public static void mapCollectReduce(){
         int newCount;
-        int oldCount=hashMap.remove("collectCount");
+        int oldCount=hashMap.get("collectCount");
         newCount=--oldCount;
         hashMap.put("collectCount",newCount);
     }
@@ -101,5 +100,8 @@ public class MangoApplication extends Application{
         return hashMap.get(key);
     }
 
+    public static void clearMap(){
+        hashMap.clear();
+    }
 
 }

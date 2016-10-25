@@ -18,8 +18,11 @@ import me.funnyzhao.mangostreet.api.UserApi;
 import me.funnyzhao.mangostreet.bean.Collect;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.bean._User;
+import me.funnyzhao.mangostreet.bean.request.CollectBody;
 import me.funnyzhao.mangostreet.bean.request.RegisterBody;
+import me.funnyzhao.mangostreet.bean.success.AddCollectBody;
 import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
+import me.funnyzhao.mangostreet.bean.success.DeleteCollectBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import me.funnyzhao.mangostreet.bean.success.SuccessBody;
 import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
@@ -282,8 +285,10 @@ public  class RetrofitRequest {
                         if (item.getItemDescription()==null){
                             item.setItemDescription("");
                         }else if (item.getItemDescription().length()>10){
-                            item.setItemDescription(item.getItemDescription()
+                            item.setItemSubDescription(item.getItemDescription()
                                     .substring(0,10)+"...");
+                        }else {
+                            item.setItemSubDescription(item.getItemDescription());
                         }
                         itemList.add(item);
                     }
@@ -303,6 +308,12 @@ public  class RetrofitRequest {
         });
 
     }
+
+    /**
+     * 根据id查询用户信息
+     * @param objectId
+     * @param detailsPer
+     */
     public static void getUserInfoById(String objectId, final IItemDetailsPer detailsPer){
         init();
         UserApi api=retrofit.create(UserApi.class);
@@ -320,6 +331,99 @@ public  class RetrofitRequest {
             @Override
             public void onFailure(Call<_User> call, Throwable t) {
                 detailsPer.loadFailure();
+            }
+        });
+    }
+
+    /**
+     * 根据id删除收藏数据
+     * @param objectId
+     */
+    public static void deleteCollectById(String objectId){
+        gson = new GsonBuilder()
+                //配置你的Gson
+                .setDateFormat("yyyy-MM-dd HH:mm:ss")
+                .create();
+        retrofit = new Retrofit.Builder()
+                .baseUrl("https://api.bmob.cn/1/")
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+        CollectApi collectApi=retrofit.create(CollectApi.class);
+        Call<DeleteCollectBody> call=collectApi.deleteColletById(objectId);
+        call.enqueue(new Callback<DeleteCollectBody>() {
+            @Override
+            public void onResponse(Call<DeleteCollectBody> call, Response<DeleteCollectBody> response) {
+                if (response.isSuccessful()){
+                    Logger.d(response.body());
+                }else {
+                    Logger.d(response.errorBody()+response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DeleteCollectBody> call, Throwable t) {
+                Logger.d(t);
+            }
+        });
+
+    }
+
+    /**
+     * 添加一行收藏数据
+     * @param collectBody
+     */
+    public static void addCollect(CollectBody collectBody){
+        init();
+        CollectApi collectApi=retrofit.create(CollectApi.class);
+        Call<AddCollectBody> call=collectApi.addCollect(collectBody);
+        call.enqueue(new Callback<AddCollectBody>() {
+            @Override
+            public void onResponse(Call<AddCollectBody> call, Response<AddCollectBody> response) {
+                if (response.isSuccessful()){
+                    Logger.d(response.body());
+                }else {
+                    Logger.d("添加收藏数据失败");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddCollectBody> call, Throwable t) {
+                Logger.d(t);
+            }
+        });
+    }
+
+    /**
+     * 获取所有发布数
+     * @param iItemDetailsPer
+     */
+    public static void getAllCollect(final IItemDetailsPer iItemDetailsPer){
+        init();
+        CollectApi collectApi=retrofit.create(CollectApi.class);
+        Call<CollectResultBody> call=collectApi.getCollectByuserName();
+        call.enqueue(new Callback<CollectResultBody>() {
+            @Override
+            public void onResponse(Call<CollectResultBody> call, Response<CollectResultBody> response) {
+                if (response.isSuccessful()){
+                    iItemDetailsPer.responCollects(response.body().getResults());
+                    //放入Collect值
+                    int collectCount=0;
+                    Collect[] collects=response.body().getResults();
+                    for (Collect collect:collects) {
+                        if (collect.getUserObjectId().equals(MangoApplication.getUser().getObjectId())){
+                            collectCount++;
+                            continue;
+                        }
+                    }
+                    MangoApplication.mapPut("collectCount",collectCount);
+                }else {
+                    Logger.d(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CollectResultBody> call, Throwable t) {
+                Logger.d(t);
             }
         });
     }

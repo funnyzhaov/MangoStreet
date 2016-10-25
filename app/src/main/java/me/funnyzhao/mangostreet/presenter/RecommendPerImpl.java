@@ -1,10 +1,14 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import android.content.Intent;
+
 import java.util.List;
 
+import me.funnyzhao.mangostreet.HomeActivity;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.model.IRecommendModel;
 import me.funnyzhao.mangostreet.model.RecommendModelImpl;
+import me.funnyzhao.mangostreet.ui.activity.ItemDetailsActivity;
 import me.funnyzhao.mangostreet.view.IRecommendView;
 
 /**
@@ -30,6 +34,14 @@ public class RecommendPerImpl implements IRecommendPer {
     @Override
     public void responseItems(List<Item> itemList) {
             iRecommendView.updateItems(itemList);
+    }
+
+    @Override
+    public void toShowDetailsPage(HomeActivity context, Item item) {
+        Intent intent=new Intent(context, ItemDetailsActivity.class);
+        intent.putExtra("item",item);
+        intent.putExtra("tag",context.exitTag);
+        context.startActivity(intent);
     }
 
     @Override

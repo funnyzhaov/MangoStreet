@@ -19,6 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.funnyzhao.mangostreet.HomeActivity;
 import me.funnyzhao.mangostreet.R;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.presenter.IRecommendPer;
@@ -137,6 +138,17 @@ public class RecommendFragment extends Fragment implements SwipeRefreshLayout.On
         mRecyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false));
         mAdapter = new GoodsAdapter(itemList,getActivity());
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new GoodsAdapter.OnRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                //根据位置获取数据,，进入物品详情页
+                if (NetWorkUtil.isNetConnect(getActivity())){
+                    iRecommendPer.toShowDetailsPage((HomeActivity) getActivity(),itemList.get(position));
+                }else {
+                    iRecommendPer.showNoNetWork();
+                }
+            }
+        });
     }
     private void initFloatButton(View root){
         fab = (FloatingActionButton)root.findViewById(R.id.fab);
