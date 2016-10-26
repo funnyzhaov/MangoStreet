@@ -29,7 +29,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import me.funnyzhao.mangostreet.bean._User;
+import me.funnyzhao.mangostreet.ui.activity.AboutActivity;
 import me.funnyzhao.mangostreet.ui.activity.LoginActivity;
+import me.funnyzhao.mangostreet.ui.activity.MyCollectActivity;
+import me.funnyzhao.mangostreet.ui.activity.UpdateActivity;
 import me.funnyzhao.mangostreet.ui.activity.UserInfoActivity;
 import me.funnyzhao.mangostreet.ui.adapter.FragmentStateAdapter;
 import me.funnyzhao.mangostreet.ui.fragment.NewestFragment;
@@ -298,10 +301,12 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
                 showResponseMsg("分类");
                 break;
             case R.id.menuitem_update:
-                showResponseMsg("升级");
+                Intent intentUpdate=new Intent(this, UpdateActivity.class);
+                startActivity(intentUpdate);
                 break;
             case R.id.menuitem_about:
-                showResponseMsg("关于");
+                Intent intentAbout=new Intent(this, AboutActivity.class);
+                startActivity(intentAbout);
                 break;
             default:
                 break;
@@ -333,6 +338,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         }else {
             //以上都不是，就加载个人收藏页面
             //...
+            Intent intent=new Intent(this, MyCollectActivity.class);
+            startActivity(intent);
         }
     }
 

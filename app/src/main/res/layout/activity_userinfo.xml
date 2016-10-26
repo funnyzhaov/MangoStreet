@@ -40,16 +40,16 @@
     <com.mmga.metroloading.MetroLoadingView
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/mv_loading"
-        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        app:number="5"
+        android:layout_height="30dp"
+        app:number="8"
         app:duration_in_mills="1200"
         app:interval_in_mills="100"
         app:transform_color="#ffc107"
+        app:indicator="circle"
         app:transform_color_mode="symmetry"
-        app:indicator_height="9dp"
-        app:indicator_width="4dp"
+        app:indicator_height="7dp"
+        app:indicator_width="3dp"
         />
     <android.support.v7.widget.CardView
         android:visibility="gone"

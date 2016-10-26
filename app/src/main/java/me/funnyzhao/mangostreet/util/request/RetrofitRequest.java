@@ -28,6 +28,7 @@ import me.funnyzhao.mangostreet.bean.success.SuccessBody;
 import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
 import me.funnyzhao.mangostreet.model.IRecommendModel;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
+import me.funnyzhao.mangostreet.presenter.ICollectPer;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
@@ -426,5 +427,55 @@ public  class RetrofitRequest {
                 Logger.d(t);
             }
         });
+    }
+    /**
+     * 获取所有发布数 Collect页面
+     * @param iCollectPer
+     */
+    public static void getAllCollect(final ICollectPer iCollectPer){
+        init();
+        CollectApi collectApi=retrofit.create(CollectApi.class);
+        Call<CollectResultBody> call=collectApi.getCollectByuserName();
+        call.enqueue(new Callback<CollectResultBody>() {
+            @Override
+            public void onResponse(Call<CollectResultBody> call, Response<CollectResultBody> response) {
+                if (response.isSuccessful()){
+                    iCollectPer.responseCollect(response.body().getResults());
+                }else {
+                    Logger.d(response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CollectResultBody> call, Throwable t) {
+                Logger.d(t);
+            }
+        });
+    }
+    /**
+     * 获取所有物品集合
+     */
+    public static void getAllItems(final ICollectPer iCollectPer){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<ItemResultBody> call=itemApi.getItemByuserName();
+        call.enqueue(new Callback<ItemResultBody>() {
+            @Override
+            public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
+                if (response.isSuccessful()){
+                    List<Item> items=new ArrayList<Item>();
+                    for (Item item:response.body().getResults()){
+                        items.add(item);
+                    }
+                    iCollectPer.responseItem(items);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemResultBody> call, Throwable t) {
+                Logger.e("请求失败",t);
+            }
+        });
+
     }
 }
