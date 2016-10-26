@@ -38,11 +38,6 @@ public interface IItemDetailsPer extends BasePer {
      */
     void responCollects(Collect[] collects);
 
-    /**
-     * 获取缓存好的collect
-     * @return
-     */
-    Collect[] getCollects();
 //-----------------------------------------------
     //like
 
@@ -57,4 +52,5 @@ public interface IItemDetailsPer extends BasePer {
      * @param userObjectId
      */
     void addCollect(String objectId,String userObjectId);
+
 }

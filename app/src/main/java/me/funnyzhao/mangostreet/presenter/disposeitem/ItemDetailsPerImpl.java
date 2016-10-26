@@ -14,7 +14,6 @@ import me.funnyzhao.mangostreet.view.dmview.IItemDetailsView;
 public class ItemDetailsPerImpl implements IItemDetailsPer {
     public IItemDetailsView iItemDetailsView;
 
-    private Collect[] mCollects;
     public ItemDetailsPerImpl(IItemDetailsView iItemDetailsView){
         this.iItemDetailsView=iItemDetailsView;
     }
@@ -51,13 +50,11 @@ public class ItemDetailsPerImpl implements IItemDetailsPer {
 
     @Override
     public void responCollects(Collect[] collects) {
-        this.mCollects=collects;
+        iItemDetailsView.responseCollects(collects);
+        iItemDetailsView.setNowCollectId();
+        iItemDetailsView.setFabLiked();
     }
 
-    @Override
-    public Collect[] getCollects() {
-        return this.mCollects;
-    }
 
     @Override
     public void deleteCollect(String objectId) {
@@ -68,4 +65,5 @@ public class ItemDetailsPerImpl implements IItemDetailsPer {
     public void addCollect(String objectId, String userObjectId) {
         RetrofitRequest.addCollect(new CollectBody(userObjectId,objectId));
     }
+
 }

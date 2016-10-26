@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.view.dmview;
 
+import me.funnyzhao.mangostreet.bean.Collect;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.view.BaseView;
@@ -31,5 +32,18 @@ public interface IItemDetailsView extends BaseView {
      * @param msg
      */
     void showMsg(String msg);
+
+    /**
+     * 更新当前Collect
+     * @param collects
+     */
+    void responseCollects(Collect[] collects);
+
+    /**
+     * 更新id
+     */
+    void setNowCollectId();
+
+    void setFabLiked();
 }
 

@@ -1,8 +1,6 @@
 package me.funnyzhao.mangostreet.ui.activity;
 
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -64,11 +62,9 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
     //M
     private Item mItem;
 
-    private Handler mHandler=new Handler(Looper.getMainLooper());
-
-   private Collect[] collects;
+    private static Collect[] collects;
     boolean isColleted=false;
-    private String nowCollectId;
+    private static String nowCollectId;
     @Override
     protected void setNowContentView() {
         setContentView(R.layout.activity_item_details);
@@ -78,8 +74,8 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
     protected void initEvents() {
         getItem();
         setBack();
-        setFabLike();
         setItemInfo();
+        setFabLike();
         if (NetWorkUtil.isNetConnect(this)){
             iItemDetailsPer.loadUserInfo();
             iItemDetailsPer.loadCollectAll();
@@ -96,6 +92,7 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        nowCollectId=null;
         MangoApplication.clearMap();
     }
 
@@ -155,6 +152,31 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
     }
 
     @Override
+    public void responseCollects(Collect[] collects) {
+        this.collects=collects;
+    }
+
+    @Override
+    public void setNowCollectId() {
+        for (int i=0;i<collects.length;i++){
+            if (collects[i].getUserObjectId().equals(MangoApplication.getUser().getObjectId()) &&
+                    collects[i].getItemId().equals(mItem.getObjectId())){
+                nowCollectId=collects[i].getObjectId();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void setFabLiked() {
+        if (checkItemCollected()){
+            fabLike.setImageResource(R.mipmap.fab_icon_liked);
+        }else {
+            fabLike.setImageResource(R.drawable.item_icon_like);
+        }
+    }
+
+    @Override
     public void showNetWorkInfo() {
         Toast.makeText(this,"无网络连接",Toast.LENGTH_SHORT).show();
     }
@@ -198,29 +220,11 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
      * @return
      */
     private boolean checkItemCollected(){
-        //然后找出是否有当前物品
-        iItemDetailsPer.loadCollectAll();
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                collects=iItemDetailsPer.getCollects();
-                for (int i=0;i<collects.length;i++){
-                    if (nowCollectId==null){
-                        if(collects[i].getUserObjectId().equals(MangoApplication.getUser().getObjectId()) &&
-                                collects[i].getItemId().equals(mItem.getObjectId())){
-                            isColleted=true;
-                            nowCollectId=collects[i].getObjectId();
-                            break;
-                        }
-                    }else {
-                        if (nowCollectId.equals(collects[i].getObjectId())){
-                            isColleted=true;
-                            break;
-                        }
-                    }
-                }
-            }
-        },2000);
+        if (nowCollectId!=null){
+            isColleted=true;
+        }else {
+            isColleted=false;
+        }
         return isColleted;
     }
 
@@ -238,14 +242,20 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
                     MangoApplication.mapCollectReduce();
                     //有bug
                     //更新服务器数据
-                    iItemDetailsPer.deleteCollect(nowCollectId);
                     showMsg("已取消收藏");
+                    isColleted=false;
+                    iItemDetailsPer.deleteCollect(nowCollectId);
+                    nowCollectId=null;
+                    fabLike.setImageResource(R.drawable.item_icon_like);
                 }else {
                     //++
                     MangoApplication.mapCollectAdd();
                     //更新服务器数据
-                    iItemDetailsPer.addCollect(itemObjecId,MangoApplication.getUser().getObjectId());
                     showMsg("收藏+1");
+                    isColleted=true;
+                    fabLike.setImageResource(R.mipmap.fab_icon_liked);
+                    iItemDetailsPer.addCollect(itemObjecId,MangoApplication.getUser().getObjectId());
+                    iItemDetailsPer.loadCollectAll();
                 }
         }else {
             showMsg("你还没登录!");
