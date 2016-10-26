@@ -77,8 +77,14 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
         setItemInfo();
         setFabLike();
         if (NetWorkUtil.isNetConnect(this)){
-            iItemDetailsPer.loadUserInfo();
-            iItemDetailsPer.loadCollectAll();
+            if (checkOnline()){
+                iItemDetailsPer.loadUserInfo();
+                iItemDetailsPer.loadCollectAll();
+            }else {
+                iItemDetailsPer.loadUserInfo();
+                nowCollectId=null;
+                fabLike.setImageResource(R.drawable.item_icon_like);
+            }
         }else {
             showNetWorkInfo();
         }
@@ -170,7 +176,7 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
     @Override
     public void setFabLiked() {
         if (checkItemCollected()){
-            fabLike.setImageResource(R.mipmap.fab_icon_liked);
+            fabLike.setImageResource(R.drawable.item_icon_liked);
         }else {
             fabLike.setImageResource(R.drawable.item_icon_like);
         }
@@ -209,6 +215,7 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
         Intent intent=getIntent();
         int tag=intent.getIntExtra("tag",0);
         if (tag==1||tag==0){
+            nowCollectId=null;
             return false;
         }else {
             return true;
@@ -253,7 +260,7 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
                     //更新服务器数据
                     showMsg("收藏+1");
                     isColleted=true;
-                    fabLike.setImageResource(R.mipmap.fab_icon_liked);
+                    fabLike.setImageResource(R.drawable.item_icon_liked);
                     iItemDetailsPer.addCollect(itemObjecId,MangoApplication.getUser().getObjectId());
                     iItemDetailsPer.loadCollectAll();
                 }
