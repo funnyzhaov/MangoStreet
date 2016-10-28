@@ -26,6 +26,7 @@
         <activity android:name=".ui.activity.MyCollectActivity"></activity>
         <activity android:name=".ui.activity.UpdateActivity"></activity>
         <activity android:name=".ui.activity.AboutActivity"></activity>
+        <activity android:name=".ui.activity.IssueActivity"></activity>
         <activity android:name=".HomeActivity"
             >
             <intent-filter>

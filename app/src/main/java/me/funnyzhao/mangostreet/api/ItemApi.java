@@ -1,8 +1,12 @@
 package me.funnyzhao.mangostreet.api;
 
+import me.funnyzhao.mangostreet.bean.Item;
+import me.funnyzhao.mangostreet.bean.success.AddItemBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 /**
  * Created by funnyzhao .
@@ -16,5 +20,13 @@ public interface ItemApi {
      */
     @GET("classes/Item")
     Call<ItemResultBody> getItemByuserName();
+
+    /**
+     * 添加物品
+     * @param item
+     * @return
+     */
+    @POST("classes/Item")
+    Call<AddItemBody> addnewItem(@Body Item item);
 
 }

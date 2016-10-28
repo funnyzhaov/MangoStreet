@@ -19,6 +19,18 @@ public class MangoApplication extends Application{
 
     //User数据
     private  static _User user=new _User();
+
+    //刷新的Tag
+    private static int refreshTag=0;
+
+    public static int getRefreshTag() {
+        return refreshTag;
+    }
+
+    public static void setRefreshTag(int refreshTag) {
+        MangoApplication.refreshTag = refreshTag;
+    }
+
     /**
      *  存储发布个数和收藏数
      *  在应用运行期间，如果用户发布物品或者收藏了物品信息，则更新这个map :add

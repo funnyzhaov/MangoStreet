@@ -8,6 +8,7 @@ import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.UploadFileListener;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
+import me.funnyzhao.mangostreet.presenter.IIssuePer;
 
 /**
  * Created by funnyzhao .
@@ -23,6 +24,33 @@ public class UploadImage {
             public void done(BmobException e) {
                 if(e==null){
                     iEditorUserPer.showImageUrl(bmobFile.getFileUrl());
+                    Logger.d("上传文件成功"+bmobFile.getFileUrl());
+                }else{
+                    Logger.d("上传文件成功"+e.getMessage());
+                }
+
+            }
+
+            @Override
+            public void onProgress(Integer value) {
+                // 返回的上传进度（百分比）
+            }
+        });
+    }
+
+    /**
+     * 上传物品图片
+     * @param imagePath
+     * @param iIssuePer
+     */
+    public static void uploadItemImage(String imagePath, final IIssuePer iIssuePer){
+        final BmobFile bmobFile = new BmobFile(new File(imagePath));
+        bmobFile.uploadblock(new UploadFileListener() {
+
+            @Override
+            public void done(BmobException e) {
+                if(e==null){
+                    iIssuePer.responseImagePath(bmobFile.getFileUrl());
                     Logger.d("上传文件成功"+bmobFile.getFileUrl());
                 }else{
                     Logger.d("上传文件成功"+e.getMessage());

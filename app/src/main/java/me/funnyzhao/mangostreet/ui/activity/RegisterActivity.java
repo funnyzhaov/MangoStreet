@@ -3,6 +3,7 @@ package me.funnyzhao.mangostreet.ui.activity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.kaopiz.kprogresshud.KProgressHUD;
@@ -22,6 +23,8 @@ import me.funnyzhao.mangostreet.view.IRegisterView;
 
 public class RegisterActivity extends BaseActivity implements IRegisterView{
 
+    @BindView(R.id.iv_back)
+    ImageView ivBack;
     @BindView(R.id.et_username)
      EditText etUserName;         //邮箱
 
@@ -57,6 +60,12 @@ public class RegisterActivity extends BaseActivity implements IRegisterView{
                }else{
                    iRegisterPer.showNoNetWork();
                }
+            }
+        });
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

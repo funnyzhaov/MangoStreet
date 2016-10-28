@@ -21,6 +21,7 @@ import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.bean.request.CollectBody;
 import me.funnyzhao.mangostreet.bean.request.RegisterBody;
 import me.funnyzhao.mangostreet.bean.success.AddCollectBody;
+import me.funnyzhao.mangostreet.bean.success.AddItemBody;
 import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
 import me.funnyzhao.mangostreet.bean.success.DeleteCollectBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
@@ -30,6 +31,7 @@ import me.funnyzhao.mangostreet.model.IRecommendModel;
 import me.funnyzhao.mangostreet.presenter.ControlUser;
 import me.funnyzhao.mangostreet.presenter.ICollectPer;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
+import me.funnyzhao.mangostreet.presenter.IIssuePer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
 import me.funnyzhao.mangostreet.presenter.IRecommendPer;
@@ -477,5 +479,31 @@ public  class RetrofitRequest {
             }
         });
 
+    }
+
+    /**
+     * 添加物品
+     * @param item
+     * @param iIssuePer
+     */
+    public static void addnewItem(Item item, final IIssuePer iIssuePer){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<AddItemBody> call=itemApi.addnewItem(item);
+        call.enqueue(new Callback<AddItemBody>() {
+            @Override
+            public void onResponse(Call<AddItemBody> call, Response<AddItemBody> response) {
+                if (response.isSuccessful()){
+                    iIssuePer.responseItemSuccess();
+                }else {
+                    Logger.d(response);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<AddItemBody> call, Throwable t) {
+                Logger.d(t);
+            }
+        });
     }
 }

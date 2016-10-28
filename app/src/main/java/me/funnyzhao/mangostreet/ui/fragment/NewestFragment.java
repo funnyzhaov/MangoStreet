@@ -1,5 +1,6 @@
 package me.funnyzhao.mangostreet.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,10 +21,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.funnyzhao.mangostreet.HomeActivity;
+import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.R;
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
 import me.funnyzhao.mangostreet.presenter.NewstPerImpl;
+import me.funnyzhao.mangostreet.ui.activity.IssueActivity;
 import me.funnyzhao.mangostreet.ui.adapter.GoodsAdapter;
 import me.funnyzhao.mangostreet.util.NetWorkUtil;
 import me.funnyzhao.mangostreet.view.INewstView;
@@ -66,6 +69,16 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
         initFloatButton(view);
         setmRecyclerView();
         return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (MangoApplication.getRefreshTag()==1){
+            onRefresh();
+            //置为默认值
+            MangoApplication.setRefreshTag(0);
+        }
     }
 
     /**
@@ -117,6 +130,20 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private void initFloatButton(View root){
         fab = (FloatingActionButton)root.findViewById(R.id.fab);
         fab.attachToRecyclerView(mRecyclerView);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (MangoApplication.getUser().getObjectId()!=null||HomeActivity.getExitTag()>1){
+                    Intent intent=new Intent(getActivity(), IssueActivity.class);
+                    getActivity().startActivity(intent);
+                }else {
+                    showMsg("木有登录！");
+                }
+            }
+        });
+
+
+
     }
 
     /**

@@ -1,11 +1,8 @@
 package me.funnyzhao.mangostreet.presenter;
 
-import android.content.Intent;
-
 import me.funnyzhao.mangostreet.BaseActivity;
 import me.funnyzhao.mangostreet.model.IRegisterModel;
 import me.funnyzhao.mangostreet.model.RegisterModelImpl;
-import me.funnyzhao.mangostreet.ui.activity.LoginActivity;
 import me.funnyzhao.mangostreet.view.IRegisterView;
 
 /**
@@ -35,8 +32,8 @@ public class RegisterPerImpl implements IRegisterPer {
             iRegisterView.getKprogressHUD().dismiss();
             iRegisterView.showSuccesInfo();
             //进入登录页
-            Intent intent=new Intent(mContext, LoginActivity.class);
-            mContext.startActivity(intent);
+//            Intent intent=new Intent(mContext, LoginActivity.class);
+//            mContext.startActivity(intent);
             mContext.finish();
         }else if("注册失败".equals(info)){
             iRegisterView.getKprogressHUD().dismiss();

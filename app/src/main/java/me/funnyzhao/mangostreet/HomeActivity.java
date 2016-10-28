@@ -390,4 +390,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
         return super.onKeyDown(keyCode, event);
     }
 
+    public static int getExitTag(){
+        return exitTag;
+    }
 }
