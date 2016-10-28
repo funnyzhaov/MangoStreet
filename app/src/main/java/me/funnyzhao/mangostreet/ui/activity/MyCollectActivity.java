@@ -107,7 +107,7 @@ public class MyCollectActivity extends BaseActivity implements ICollectView{
                 //根据位置获取数据,，进入物品详情页
                 if (NetWorkUtil.isNetConnect(MyCollectActivity.this)){
                     //进入详情
-
+                    iCollectPer.toShowDetailsPage(MyCollectActivity.this,collectItemList.get(position));
                 }else {
                     iCollectPer.showNoNetWork();
                 }

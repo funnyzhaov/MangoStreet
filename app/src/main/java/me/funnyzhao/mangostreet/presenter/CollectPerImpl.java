@@ -1,5 +1,7 @@
 package me.funnyzhao.mangostreet.presenter;
 
+import android.content.Intent;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.Set;
 import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.bean.Collect;
 import me.funnyzhao.mangostreet.bean.Item;
+import me.funnyzhao.mangostreet.ui.activity.ItemDetailsActivity;
+import me.funnyzhao.mangostreet.ui.activity.MyCollectActivity;
 import me.funnyzhao.mangostreet.util.request.RetrofitRequest;
 import me.funnyzhao.mangostreet.view.ICollectView;
 
@@ -23,12 +27,11 @@ public class CollectPerImpl implements ICollectPer {
     }
     @Override
     public void showNoNetWork() {
-
+        iCollectView.showNetWorkInfo();
     }
 
     @Override
     public void showRequestInfo(String info) {
-
     }
 
     @Override
@@ -70,6 +73,15 @@ public class CollectPerImpl implements ICollectPer {
         newItemList=new ArrayList(new HashSet(newItemList));
         iCollectView.stopLoading();
         iCollectView.setMyRecyclerView(newItemList);
+    }
+
+    @Override
+    public void toShowDetailsPage(MyCollectActivity collectActivity, Item item) {
+        Intent intent=new Intent(collectActivity, ItemDetailsActivity.class);
+        intent.putExtra("item",item);
+        //用户在线，所以tag为2
+        intent.putExtra("tag",2);
+        collectActivity.startActivity(intent);
     }
 
     /**

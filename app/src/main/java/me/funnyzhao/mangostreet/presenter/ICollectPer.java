@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.funnyzhao.mangostreet.bean.Collect;
 import me.funnyzhao.mangostreet.bean.Item;
+import me.funnyzhao.mangostreet.ui.activity.MyCollectActivity;
 
 /**
  * Created by funnyzhao .
@@ -26,4 +27,11 @@ public interface ICollectPer extends BasePer {
      * @param itemList
      */
     void responseItem(List<Item> itemList);
+
+    /**
+     * 进入详情页
+     * @param collectActivity
+     * @param item
+     */
+    void toShowDetailsPage(MyCollectActivity collectActivity,Item item);
 }
