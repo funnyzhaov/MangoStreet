@@ -146,7 +146,7 @@ public class MyIssueActivity extends BaseActivity implements IMyIssueView{
                         mRecyclerView.smoothScrollToPosition(0);
                         //执行后台服务器删除数据操作
                         iMyIssuePer.deleteMyItem(objectId,url);
-                                sDialog.setTitleText("Deleted!")
+                                sDialog.setTitleText("已删除！")
                                 .setConfirmText("OK")
                                 .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
