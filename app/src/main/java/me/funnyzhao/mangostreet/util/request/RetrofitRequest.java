@@ -24,6 +24,7 @@ import me.funnyzhao.mangostreet.bean.success.AddCollectBody;
 import me.funnyzhao.mangostreet.bean.success.AddItemBody;
 import me.funnyzhao.mangostreet.bean.success.CollectResultBody;
 import me.funnyzhao.mangostreet.bean.success.DeleteCollectBody;
+import me.funnyzhao.mangostreet.bean.success.DeleteItemBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import me.funnyzhao.mangostreet.bean.success.SuccessBody;
 import me.funnyzhao.mangostreet.bean.success.UpdateUserBody;
@@ -33,6 +34,7 @@ import me.funnyzhao.mangostreet.presenter.ICollectPer;
 import me.funnyzhao.mangostreet.presenter.IEditorUserPer;
 import me.funnyzhao.mangostreet.presenter.IIssuePer;
 import me.funnyzhao.mangostreet.presenter.ILoginPer;
+import me.funnyzhao.mangostreet.presenter.IMyIssuePer;
 import me.funnyzhao.mangostreet.presenter.INewstPer;
 import me.funnyzhao.mangostreet.presenter.IRecommendPer;
 import me.funnyzhao.mangostreet.presenter.IRegisterPer;
@@ -505,5 +507,58 @@ public  class RetrofitRequest {
                 Logger.d(t);
             }
         });
+    }
+    /**
+     * 获取所有物品集合
+     */
+    public static void getAllItems(final IMyIssuePer iMyIssuePer){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<ItemResultBody> call=itemApi.getItemByuserName();
+        call.enqueue(new Callback<ItemResultBody>() {
+            @Override
+            public void onResponse(Call<ItemResultBody> call, Response<ItemResultBody> response) {
+                if (response.isSuccessful()){
+                    List<Item> items=new ArrayList<Item>();
+                    for (Item item:response.body().getResults()){
+                        items.add(item);
+                    }
+                    iMyIssuePer.responseItem(items);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ItemResultBody> call, Throwable t) {
+                Logger.e("请求失败",t);
+            }
+        });
+
+    }
+
+
+    /**
+     * 根据id删除发布的item
+     * @param objectId
+     */
+    public static void deleteIssueById(String objectId){
+        init();
+        ItemApi itemApi=retrofit.create(ItemApi.class);
+        Call<DeleteItemBody> call=itemApi.deleteItem(objectId);
+        call.enqueue(new Callback<DeleteItemBody>() {
+            @Override
+            public void onResponse(Call<DeleteItemBody> call, Response<DeleteItemBody> response) {
+                if (response.isSuccessful()){
+                    Logger.d("删除发布信息"+response.body());
+                }else {
+                    Logger.d("删除发布信息"+response.errorBody()+response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<DeleteItemBody> call, Throwable t) {
+                Logger.d(t);
+            }
+        });
+
     }
 }

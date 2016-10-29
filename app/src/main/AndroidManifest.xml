@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="me.funnyzhao.mangostreet">
 
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -8,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <application
+        tools:replace="android:icon"
         android:name=".MangoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/mango_ic"
@@ -27,6 +29,7 @@
         <activity android:name=".ui.activity.UpdateActivity"></activity>
         <activity android:name=".ui.activity.AboutActivity"></activity>
         <activity android:name=".ui.activity.IssueActivity"></activity>
+        <activity android:name=".ui.activity.MyIssueActivity"></activity>
         <activity android:name=".HomeActivity"
             >
             <intent-filter>

@@ -32,6 +32,7 @@ import me.funnyzhao.mangostreet.bean._User;
 import me.funnyzhao.mangostreet.ui.activity.AboutActivity;
 import me.funnyzhao.mangostreet.ui.activity.LoginActivity;
 import me.funnyzhao.mangostreet.ui.activity.MyCollectActivity;
+import me.funnyzhao.mangostreet.ui.activity.MyIssueActivity;
 import me.funnyzhao.mangostreet.ui.activity.UpdateActivity;
 import me.funnyzhao.mangostreet.ui.activity.UserInfoActivity;
 import me.funnyzhao.mangostreet.ui.adapter.FragmentStateAdapter;
@@ -323,7 +324,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
             showResponseMsg("你还木有登录!");
         }else {
             //以上都不是，就加载个人发布页面
-            //...
+            Intent intent=new Intent(this, MyIssueActivity.class);
+            startActivity(intent);
         }
     }
     /**
@@ -337,7 +339,6 @@ public class HomeActivity extends AppCompatActivity implements IHomeView,View.On
             showResponseMsg("你还木有登录!");
         }else {
             //以上都不是，就加载个人收藏页面
-            //...
             Intent intent=new Intent(this, MyCollectActivity.class);
             startActivity(intent);
         }

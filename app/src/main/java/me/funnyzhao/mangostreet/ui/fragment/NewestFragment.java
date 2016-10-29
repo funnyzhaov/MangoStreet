@@ -78,7 +78,7 @@ public class NewestFragment extends Fragment implements SwipeRefreshLayout.OnRef
             onRefresh();
             //置为默认值
             MangoApplication.setRefreshTag(0);
-        }
+        }//else if() 加入学校的判断，刷新动画开启，然后调用相应的方法，做完数据的处理，关闭动画
     }
 
     /**

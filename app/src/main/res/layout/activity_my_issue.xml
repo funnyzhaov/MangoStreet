@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+        <ImageView
+            android:layout_alignParentLeft="true"
+            android:id="@+id/issue_iv_back"
+            android:layout_marginLeft="16dp"
+            android:src="@drawable/arrow_left"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="关闭按钮"
+            />
+        <TextView
+            android:text="我的发布"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/collect_title"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.mmga.metroloading.MetroLoadingView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/issue_mv_loading"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:number="6"
+            app:duration_in_mills="1200"
+            app:interval_in_mills="100"
+            app:transform_color="#ffc107"
+            app:indicator="circle"
+            app:transform_color_mode="symmetry"
+            app:indicator_height="7dp"
+            app:indicator_width="3dp"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/issue_recView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </FrameLayout>
+
+</LinearLayout>

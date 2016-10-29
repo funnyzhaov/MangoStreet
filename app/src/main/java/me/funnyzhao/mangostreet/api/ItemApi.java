@@ -2,11 +2,14 @@ package me.funnyzhao.mangostreet.api;
 
 import me.funnyzhao.mangostreet.bean.Item;
 import me.funnyzhao.mangostreet.bean.success.AddItemBody;
+import me.funnyzhao.mangostreet.bean.success.DeleteItemBody;
 import me.funnyzhao.mangostreet.bean.success.ItemResultBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 /**
  * Created by funnyzhao .
@@ -28,5 +31,14 @@ public interface ItemApi {
      */
     @POST("classes/Item")
     Call<AddItemBody> addnewItem(@Body Item item);
+
+
+    /**
+     * 删除物品
+     * @param objectId
+     * @return
+     */
+    @DELETE("classes/Item/{objectId}")
+    Call<DeleteItemBody> deleteItem(@Path("objectId") String objectId);
 
 }

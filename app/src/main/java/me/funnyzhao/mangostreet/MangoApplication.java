@@ -20,7 +20,7 @@ public class MangoApplication extends Application{
     //User数据
     private  static _User user=new _User();
 
-    //刷新的Tag
+    //发布后刷新的Tag，默认为0不刷新
     private static int refreshTag=0;
 
     public static int getRefreshTag() {

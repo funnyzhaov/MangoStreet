@@ -3,9 +3,13 @@ package me.funnyzhao.mangostreet.presenter;
 import android.content.Intent;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 import me.funnyzhao.mangostreet.MangoApplication;
 import me.funnyzhao.mangostreet.bean.Collect;
@@ -50,11 +54,13 @@ public class CollectPerImpl implements ICollectPer {
                 }
             }
             if (collectItemid.size()==0){
+                iCollectView.stopLoading();
                 iCollectView.setMyRecyclerView(null);
             }else {
                 loadAllItems();
             }
         }else {
+            iCollectView.stopLoading();
             iCollectView.setMyRecyclerView(null);
         }
     }
@@ -70,9 +76,17 @@ public class CollectPerImpl implements ICollectPer {
                 }
             }
         }
-        newItemList=new ArrayList(new HashSet(newItemList));
+        //时间排序
+        List<Item> retStr=new ArrayList<Item>();
+        Map<Long,Item> map = new TreeMap<Long,Item>();
+        for(int i=0;i<newItemList.size();i++){
+            map.put((newItemList.get(i).getCreatedAt().getTime()),newItemList.get(i));
+        }
+        Collection<Item> coll=map.values();
+        retStr.addAll(coll);
+        Collections.sort(retStr);
         iCollectView.stopLoading();
-        iCollectView.setMyRecyclerView(newItemList);
+        iCollectView.setMyRecyclerView(retStr);
     }
 
     @Override
