@@ -49,7 +49,6 @@ public class MyCollectActivity extends BaseActivity implements ICollectView{
         metroLoadingView.start();
         iCollectPer.loadMyCollect();
     }
-
     @Override
     protected void initDataOrPresenter() {
         iCollectPer=new CollectPerImpl(this);

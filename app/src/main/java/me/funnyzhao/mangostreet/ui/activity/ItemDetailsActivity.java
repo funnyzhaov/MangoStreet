@@ -260,9 +260,9 @@ public class ItemDetailsActivity extends BaseActivity implements IItemDetailsVie
                     //更新服务器数据
                     showMsg("收藏+1");
                     isColleted=true;
-                    fabLike.setImageResource(R.drawable.item_icon_liked);
                     iItemDetailsPer.addCollect(itemObjecId,MangoApplication.getUser().getObjectId());
                     iItemDetailsPer.loadCollectAll();
+                    fabLike.setImageResource(R.drawable.item_icon_liked);
                 }
         }else {
             showMsg("你还没登录!");
